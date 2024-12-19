@@ -7,18 +7,20 @@
     padding: 0;
     box-sizing: border-box;
   }
+  html {
+    margin: 1.25rem;
+    display: flex;
+  }
   
   body {
     background-image: url('../public/assets/images/rPlexPoster.jpg');
     background-size: cover;
     background-position: fixed;
     backdrop-filter: blur(24px);
-    width: 100dvw;
+    width: 100%;
     overflow-x: hidden;
     height: 100%;
-    padding: 1.5rem;
-    margin: 1.5rem;
-    border-radius: 1.5rem;
+    border-radius: 1rem;
   }
   
   .screen-max-width {
@@ -36,9 +38,94 @@
     .nav-height {
       @apply h-[calc(100vh-60px)]
     }
+    .hero-height {
+      @apply h-[calc(100vh-120px)]
+    }
 
     .glass-effect {
         @apply backdrop-blur-lg bg-gray-800/50 shadow border border-gray-500 
     }
+
+    .nav-bar {
+      display: grid;
+      grid-template-rows: 24px auto;
+      grid-template-columns: 1fr;
+      justify-content: center;
+      width: 100%;
+      max-width: var(--container-width);
+      height: var(--navbar-height);
+      overflow-x: hidden;
+      overflow-y: hidden;
+      background-color: rgba(0, 0, 0, 0);
+      background-position-x: 0%;
+      background-position-y: 0%;
+      background-repeat: repeat;
+      background-attachment: scroll;
+      background-image: linear-gradient(137deg, rgba(17, 18, 20, 0.75) 4.87%, rgba(12, 13, 15, 0.9) 75.88%);
+      background-size: auto;
+      background-origin: padding-box;
+      background-clip: border-box;
+      backdrop-filter: blur(5px);
+      box-shadow: rgba(255, 255, 255, 0.15) 0px 1px 1px 0px inset;
+      transition-property: height, transform;
+      transition-duration: 0.3s, 0.3s;
+      transition-timing-function: ease, ease;
+      transition-delay: 0s, 0s;
+      transition-behavior: normal, normal;
+      transform: translateZ(0px);
+      will-change: height, transform;
+      box-sizing: border-box;
+      actualWidth: 903;
+      actualHeight: 76;
+    }
   
+    .nav-container {
+      position: fixed;
+      top: 0px;
+      left: 50%;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      overscroll-behavior-x: contain;
+      overscroll-behavior-y: contain;
+      transform: translateX(-50%);
+      box-sizing: border-box;
+      actualWidth: 779;
+      actualHeight: 92;
+    }
+
+    .nav-barbar {
+	display: grid;
+	grid-template-rows: 24px auto;
+	grid-template-columns: 1fr;
+	justify-content: center;
+	width: 100%;
+	max-width: var(--container-width);
+	height: var(--navbar-height);
+	overflow-x: hidden;
+	overflow-y: hidden;
+	background-color: rgba(0, 0, 0, 0);
+	background-position-x: 0%;
+	background-position-y: 0%;
+	background-repeat: repeat;
+	background-attachment: scroll;
+	background-image: linear-gradient(137deg, rgba(17, 18, 20, 0.75) 4.87%, rgba(12, 13, 15, 0.9) 75.88%);
+	background-size: auto;
+	background-origin: padding-box;
+	background-clip: border-box;
+	backdrop-filter: blur(5px);
+	box-shadow: rgba(255, 255, 255, 0.15) 0px 1px 1px 0px inset;
+	transition-property: height, transform;
+	transition-duration: 0.3s, 0.3s;
+	transition-timing-function: ease, ease;
+	transition-delay: 0s, 0s;
+	transition-behavior: normal, normal;
+	transform: translateZ(0px);
+	will-change: height, transform;
+	box-sizing: border-box;
+	actualWidth: 747;
+	actualHeight: 76;
+}
   }
+
