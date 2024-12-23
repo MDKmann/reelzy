@@ -1,10 +1,24 @@
-import heroPoster from "/public/assets/images/heroFilmPosters.png"
+import SearchBar from "./SearchBar"
+
 
 const Hero = () => {
   return (
-    <div className="hero-height flex  items-center justify-center">
-        <img src={heroPoster} alt="poster" className="m-4 overflow-hidden rounded-3xl shadow-inner" />
+   <>
+     <div className="flex justify-center items-center h-dvh">
+       <div className="movie-banner-bg -z-50"></div>
+       <div className="shadow-inner-xl -z-40"></div>
+       <div className="flex flex-col items-center justify-center h-full">
+        <h1>Your site to find your next favorite show and we make it REELZY for YOU!</h1>
+        <h3>Don{"'"}t you want to stop doomscrolling all of your streaming platforms?
+          <br />
+           Let us help you watch your movie instead of searching for it.</h3>
+           <SearchBar />
+       </div>
+       
     </div>
+    
+   </>
+    
   )
 }
 

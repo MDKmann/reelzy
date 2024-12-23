@@ -10,13 +10,11 @@ const App = () => {
     <Router>
       <>
       <Nav />
-      <h1 className="text-3xl font-bold underline">
-      Hello world!
+
       <Routes>
         <Route path="/" element={<Home />} ></Route>
         <Route path="" element={<Search />} ></Route>
       </Routes>
-    </h1>
     </>
     </Router>
   )
