@@ -48,7 +48,9 @@
     position: relative;
     max-width: 1120px;
   }
+  
 
+/* 
   .container {
     max-width: 124rem;
     padding: 4rem 1rem;
@@ -225,7 +227,7 @@
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 2;
 	overflow: hidden;
-}
+} */
 
   @layer utilities {
     h1 {

@@ -1,14 +1,16 @@
-import MovieCard from "../components/MovieCard"
+
 import MovieCarousel from "../components/MovieCarousel"
 import SearchBar from "../components/SearchBar"
 
 
 const Search = () => {
   return (
-    <div>
+    <>
+    <div className="mt-40">
       <SearchBar />
       <MovieCarousel />
     </div>
+    </>
   )
 }
 
