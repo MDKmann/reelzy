@@ -8,6 +8,7 @@
 import Hero from "../components/Hero";
 import { SearchBar } from "../components/SearchBar";
 
+
 const Home = () => {
   return (
     <>
