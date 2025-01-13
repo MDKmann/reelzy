@@ -3,6 +3,8 @@ import { useDebounce } from "../utils/debounceHook";
 import { useCallback, useEffect, useState } from "react";
 import topMovies from "../data/topMovies.json";
 import { useSearchState } from "./useSearchState";
+import { useLocation, useNavigate } from "react-router-dom";
+
 
 export default function useFetchMovies() {
   const BASE_API_URL = "https://www.omdbapi.com/?";
@@ -10,8 +12,9 @@ export default function useFetchMovies() {
 
   const [searchValue, setSearchValue] = useState("");
   const debouncedSearch = useDebounce(searchValue);
-  const { setData, resetData } = useSearchState("searchResults", topMovies);
+  const { setData, resetData } = useSearchState("searchResults", {});
   const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
 
   const handleSearchRequest = useCallback(async () => {
     setIsLoading(true);
@@ -22,11 +25,9 @@ export default function useFetchMovies() {
     );
 
     let responseDataSearch = [];
-    if (!data.Search) {
-      responseDataSearch = topMovies;
-    } else {
-      responseDataSearch = data.Search;
-    }
+   
+     responseDataSearch = data.Search;
+    
 
     const responseDataIds = responseDataSearch?.map((movie) => movie.imdbID);
     await Promise.allSettled(
@@ -42,6 +43,9 @@ export default function useFetchMovies() {
     console.log(Object.values(fullSearchResults));
 
     setIsLoading(false);
+    if (searchValue) {
+      navigate("/search", { state: searchValue, replace: true });
+    }
   }, [debouncedSearch]);
 
   useEffect(() => {

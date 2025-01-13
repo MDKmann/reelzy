@@ -10,49 +10,78 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { useSearchState } from "../hooks/useSearchState";
-import { useEffect } from "react";
+// import { useSearchState } from "../hooks/useSearchState";
+// import { useEffect } from "react";
+import topMovies from "../data/topMovies.json"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 const MovieCarousel = () => {
-  const { data } = useSearchState();
+//   const { data } = useSearchState();
 
 
-useEffect(() => {}, [data])
+// useEffect(() => {}, [data])
   
   return (
-    <div className="container m-auto mt-16 flex w-full max-w-screen-md items-center justify-center">
+    <div className="container m-auto mt-16 flex w-full max-w-screen-lg items-center justify-center h-full">
       <Swiper
-        slidesPerView={4}
-        effect={"coverflow"}
-        spaceBetween={30}
+        slidesPerView={1}
+        spaceBetween={10}
         grabCursor={true}
+        loop={true}
         keyboard={{
           enabled: true,
-        }}
-        centeredSlides={true}
-        coverflowEffect={{
-          rotate: 0,
-          stretch: 0,
-          depth: 150,
-          modifier: 1,
-          slideShadows: true,
         }}
         // lazy={true}
         pagination={{
           clickable: true,
         }}
         navigation={true}
+        // breakpoints={{
+        //   640: {
+        //     slidesPerView: 2,
+        //     spaceBetween: 20,
+        //   },
+        //   768: {
+        //     slidesPerView: 4,
+        //     spaceBetween: 40,
+        //   },
+        //   1024: {
+        //     slidesPerView: 4,
+        //     spaceBetween: 40,
+        //   },
+        // }}
+        breakpoints={{
+          "@0.00": {
+            slidesPerView: 1,
+            spaceBetween: 10,
+          },
+          "@0.75": {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          "@1.00": {
+            slidesPerView: 3,
+            spaceBetween: 40,
+          },
+          "@1.50": {
+            slidesPerView: 4,
+            spaceBetween: 20,
+          },
+        }}
         modules={[EffectCoverflow, Pagination, Navigation, Keyboard]}
         className="swiper-container"
       >
-        {data?.map((movie) => (
-          <SwiperSlide key={movie.imdbID}>
-            <div className="relative">
+        {topMovies?.map((movie) => (
+          <SwiperSlide key={movie.imdbID} className="my-10 mx-6">
+            <div className="hover:card-hover-shadow transition-group group relative rounded-2xl hover:scale-105">
               <div className="absolute inset-0 flex items-end rounded-2xl border border-[#b1b1b166] bg-gradient-to-t from-black/60 to-transparent">
-                <div className="p-4 text-white">
+                <div className="transition-secondary translate-y-8 p-4 text-white group-hover:translate-y-0">
                   <h3 className="mb-2 text-xl font-bold">{movie.Title}</h3>
-                  <div className="mt-4 space-x-4">
-                    <span>{movie.imdbRating}</span>
+                  <div className="mt-4 space-x-4 opacity-0 transition-opacity delay-500 group-hover:opacity-100">
+                    <span>
+                      <FontAwesomeIcon icon={faStar} /> {movie.imdbRating}/10
+                    </span>
                     <span>{movie.Rated}</span>
                     <span>{movie.Runtime}</span>
                   </div>
@@ -62,7 +91,7 @@ useEffect(() => {}, [data])
                 src={movie.Poster}
                 loading="lazy"
                 alt="movie-poster"
-                className="rounded-2xl object-cover"
+                className="movie-card-img rounded-2xl object-cover"
               />
             </div>
           </SwiperSlide>

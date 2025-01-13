@@ -6,6 +6,7 @@
  */
 
 import Hero from "../components/Hero";
+import MovieCarousel from "../components/MovieCarousel";
 import { SearchBar } from "../components/SearchBar";
 
 
@@ -17,6 +18,7 @@ const Home = () => {
         <div className="shadow-inner-xl -z-40"></div>
         <Hero />
         <SearchBar />
+        <MovieCarousel />
       </div>
     </>
   );

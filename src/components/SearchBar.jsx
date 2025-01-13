@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+
 
 import MagnifySVG from "./MagnifySVG";
 import SlidersSVG from "./SlidersSVG";
@@ -6,19 +6,15 @@ import useFetchMovies from "../hooks/useFetchMovies";
 
 export function SearchBar() {
   const { searchValue, setSearchValue } = useFetchMovies();
-  const { path } = useLocation();
-  const navigate = useNavigate();
-
-
+  // const { path } = useLocation();
+  // const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(path)
-    console.log(event);
-    navigate('/search')
+  //   if (searchValue) {
+  //     navigate("/search", { state: searchValue, replace: true });
+  //   }
   };
-
-
 
   return (
     <div className="mt-4 flex justify-center">
