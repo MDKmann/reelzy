@@ -10,10 +10,11 @@ import Search from "./pages/Search";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faCalendarAlt, faClock } from "@fortawesome/free-regular-svg-icons";
+import { faChalkboardUser, faList, faStar } from "@fortawesome/free-solid-svg-icons";
 import Movie from "./pages/Movie";
 
-library.add(fab, faStar);
+library.add(fab, faStar, faChalkboardUser, faList, faCalendarAlt, faClock);
 
 const App = () => {
 
