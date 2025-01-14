@@ -1,10 +1,9 @@
 import axios from "axios";
 import { useDebounce } from "../utils/debounceHook";
 import { useCallback, useEffect, useState } from "react";
-import topMovies from "../data/topMovies.json";
 import { useSearchState } from "./useSearchState";
-import { useLocation, useNavigate } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
+import { getItem, setItem } from "../utils/localStorage";
 
 export default function useFetchMovies() {
   const BASE_API_URL = "https://www.omdbapi.com/?";
@@ -14,20 +13,23 @@ export default function useFetchMovies() {
   const debouncedSearch = useDebounce(searchValue);
   const { setData, resetData } = useSearchState("searchResults", {});
   const [isLoading, setIsLoading] = useState(false);
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSearchRequest = useCallback(async () => {
+    const storedResults = getItem("searchResults");
     setIsLoading(true);
     let fullSearchResults = {};
+    let responseDataSearch = [];
 
     const { data } = await axios.get(
-      `${BASE_API_URL}s=${debouncedSearch}${KEY}`
+      `${BASE_API_URL}s=${debouncedSearch}${KEY}`,
     );
 
-    let responseDataSearch = [];
-   
-     responseDataSearch = data.Search;
-    
+    responseDataSearch = data.Search;
+
+    if (!responseDataSearch) {
+      responseDataSearch = storedResults;
+    }
 
     const responseDataIds = responseDataSearch?.map((movie) => movie.imdbID);
     await Promise.allSettled(
@@ -37,8 +39,9 @@ export default function useFetchMovies() {
         const responseMappedData = responseMapped.data;
         // Send request for each id
         fullSearchResults[responseMappedData.imdbID] = responseMappedData;
-      })
+      }),
     );
+    setItem("searchResults", Object.values(fullSearchResults));
     setData(Object.values(fullSearchResults));
     console.log(Object.values(fullSearchResults));
 
