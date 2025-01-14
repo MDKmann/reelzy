@@ -1,9 +1,15 @@
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { fixTime } from "../utils/fixTime";
 
 const MovieCard = ({ movie }) => {
+  const runtimeRef = useRef('')
 
+  useEffect(() => {
+    runtimeRef.current = fixTime(movie.Runtime)
+  },[])
 
   return (
     <Link to={`/${movie.imdbID}`} >
@@ -16,7 +22,7 @@ const MovieCard = ({ movie }) => {
                 <FontAwesomeIcon icon={faStar} /> {movie.imdbRating}/10
               </span>
               <span>{movie.Rated}</span>
-              <span>{movie.Runtime}</span>
+              <span>{runtimeRef.current}</span>
             </div>
           </div>
         </div>

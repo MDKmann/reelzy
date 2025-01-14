@@ -15,6 +15,7 @@ import "swiper/css/navigation";
 import topMovies from "../data/topMovies.json"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { fixTime } from "../utils/fixTime";
 
 const MovieCarousel = () => {
 //   const { data } = useSearchState();
@@ -83,7 +84,7 @@ const MovieCarousel = () => {
                       <FontAwesomeIcon icon={faStar} /> {movie.imdbRating}/10
                     </span>
                     <span>{movie.Rated}</span>
-                    <span>{movie.Runtime}</span>
+                    <span>{fixTime(movie.Runtime)}</span>
                   </div>
                 </div>
               </div>
