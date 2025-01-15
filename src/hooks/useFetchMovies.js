@@ -47,7 +47,7 @@ export default function useFetchMovies() {
 
     setIsLoading(false);
     if (searchValue) {
-      navigate("/search", { state: searchValue, replace: true });
+      navigate("/search", { state: data, replace: true });
     }
   }, [debouncedSearch]);
 
@@ -58,6 +58,7 @@ export default function useFetchMovies() {
   return {
     searchValue,
     setSearchValue,
+    setData,
     refetch: handleSearchRequest,
   };
 }

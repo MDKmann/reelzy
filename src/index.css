@@ -6,7 +6,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: red;
+  color: white;
 }
 
 /* body {
@@ -19,6 +19,10 @@
     height: 100%;
     border-radius: 1rem;
   } */
+
+  body {
+    background: #000;
+  }
 
 .movie-banner-bg {
   background-image: url("../public/assets/images/rPlexPoster.jpg");
@@ -305,8 +309,9 @@
   }
 
   .card-hover-shadow {
-    @apply shadow-[2px_4px_12px_6px_#000000] bg-[#FFFFFF] mx-auto border;
+    @apply shadow-[2px_4px_12px_6px_#555555] bg-[#777777] mx-auto border border-gray-500;
   }
+  
 
   .transition-group {
     @apply transition ease-in-out duration-500;

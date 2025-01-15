@@ -5,6 +5,7 @@ import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fixTime } from "../utils/fixTime";
+import { SearchBar } from "../components/SearchBar";
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState({});
@@ -39,6 +40,7 @@ const MovieDetails = () => {
 
   return (
     <>
+      <SearchBar />
       <section className="bg-white py-8 antialiased md:py-16 dark:bg-gray-900">
         <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
           <div className="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
