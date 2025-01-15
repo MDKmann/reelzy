@@ -1,4 +1,5 @@
 import Logo from "../../public/assets/images/logo.png"
+import { Link } from "react-router-dom";
 
 export function Nav() {
   return (
@@ -7,10 +8,10 @@ export function Nav() {
         <div className="px-4">
           <div className="flex items-center justify-between">
             <div className="flex shrink-0">
-                <a href="" className="flex items-center" >
+                <Link to={"/"} className="flex items-center" >
                     <img className="w-auto h-9" src={Logo} alt="" />
                     <p className="sr-only">Pick Your Flick</p>
-                </a>
+                </Link>
             </div>
             <a className="flex items-center text-lg font-bold text-white no-underline opacity-75 sm:text-2xl hover:no-underline lg:text-4xl" href="#">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-sky-400">REEL</span>ZY

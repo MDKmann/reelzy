@@ -7,11 +7,15 @@ import SortSelect from "./SortSelect";
 
 import { getItem } from "../utils/localStorage";
 import { useEffect, useState } from "react";
+import SlidersSVG from "./SlidersSVG";
 
 export function SearchBar() {
-  const [filter, setFilter] = useState('')
+  const [filter, setFilter] = useState("");
   const { searchValue, setSearchValue, refetch } = useFetchMovies();
-  const { data, setData, resetData } = useSearchState("searchResults", getItem("searchResults"));
+  const { data, setData, resetData } = useSearchState(
+    "searchResults",
+    getItem("searchResults")
+  );
 
   // const { path } = useLocation();
   // const navigate = useNavigate();
@@ -43,19 +47,41 @@ export function SearchBar() {
       //   movies.sort((a, b) => Number(a.imdbRating) - Number(b.imdbRating));
       // }
     }
-   sortMovies();
+    sortMovies();
     refetch;
   }, [filter]);
-
-  
-
 
   return (
     <div className="m-4 flex justify-center">
       <div className="flex w-full max-w-[600px] rounded-full bg-[#0d1829] px-2">
         <button className="flex cursor-pointer self-center bg-[#0d1829] p-1"></button>
-        <div className="relative">
-          <SortSelect handleSortMovies={filter => setFilter(filter)}  />
+        <div className="relative group">
+          <label alt="filter movies"
+          >
+            <div className="absolute mx-4 my-2 group-focus:opacity-0 group-hover:opacity-0 group-active:opacity-0 group:transition-all">
+              <SlidersSVG />
+            </div>
+            <select
+              defaultValue=""
+              className=" w-8 h-10 px-5 pr-10 rounded-full text-sm select-anim"
+            >
+              <option value="" disabled selected="">
+                Sort
+              </option>
+              <option value="YEAR_HIGH_TO_LOW">
+                Year Released, Newest to Oldest
+              </option>
+              <option value="YEAR_LOW_TO_HIGH">
+                Year Released, Oldest to Newest
+              </option>
+              <option value="RATING_HIGH_TO_LOW">
+                Rating, Highest to Lowest
+              </option>
+              <option value="RATING_LOW_TO_HIGH">
+                Rating, Lowest to Highest
+              </option>
+            </select>
+          </label>
           {/* <button className="peer relative z-10 block p-2 transition-colors duration-300 transform rounded-lg focus:outline-none border-2 border-blue-500">
             <SlidersSVG />
           </button>
