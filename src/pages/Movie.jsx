@@ -63,12 +63,12 @@ const MovieDetails = () => {
                 </p>
 
                 <div className="mt-2 flex items-center gap-2 sm:mt-0">
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1 text-yellow-400">
                     <FontAwesomeIcon icon={faStar} />
                   </div>
 
-                  <p className="text-sm font-medium leading-none text-gray-500 dark:text-gray-400">
-                    ({movie.imdbRating})
+                  <p className="text-lg font-medium leading-none text-gray-500 dark:text-gray-400">
+                    {movie.imdbRating}/10
                   </p>
 
                 </div>
@@ -77,7 +77,7 @@ const MovieDetails = () => {
               <div className="mt-2 sm:mt-4 sm:flex sm:items-center sm:gap-4"></div>
 
               <div className="mt-2 flex items-center gap-2 sm:mt-0">
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1 text-red-600">
                     <FontAwesomeIcon icon={faCalendarAlt} />
                   </div>
 
@@ -85,7 +85,7 @@ const MovieDetails = () => {
                   {movie.Year}
                   </p>
 
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1 text-red-600">
                     <FontAwesomeIcon icon={faClock} />
                   </div>
 
@@ -105,7 +105,7 @@ const MovieDetails = () => {
                     key={actor}
                     href="#"
                     title=""
-                    className="hover:text-primary-700 flex items-center justify-center rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                    className="hover:text-primary-700 flex items-center justify-center rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 my-2 sm:my-0 max-w-[350px]"
                     role="button"
                   >
                     <svg
@@ -119,36 +119,13 @@ const MovieDetails = () => {
                     >
                       <FontAwesomeIcon icon={faChalkboardUser} />
                     </svg>
+                    <span className="text-white">
                     {actor}
+                    </span>
                   </a>
                 ))}
               </div>
 
-                {/* <a
-                  href="#"
-                  title=""
-                  className="bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 mt-4 flex items-center justify-center rounded-lg px-5 py-2.5 text-sm font-medium text-white focus:outline-none focus:ring-4 sm:mt-0"
-                  role="button"
-                >
-                  <svg
-                    className="-ms-2 me-2 h-5 w-5"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6"
-                    />
-                  </svg>
-                  {movie.Actors}
-                </a> */}
               </div>
 
               <hr className="my-6 border-gray-200 md:my-8 dark:border-gray-800" />
@@ -165,7 +142,7 @@ const MovieDetails = () => {
                     key={genre}
                     href="#"
                     title=""
-                    className="hover:text-primary-700 flex items-center justify-center rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                    className="hover:text-primary-700 flex items-center justify-center rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 my-2 sm:my-0 max-w-[350px]"
                     role="button"
                   >
                     <svg
@@ -179,7 +156,9 @@ const MovieDetails = () => {
                     >
                      <FontAwesomeIcon icon={faList} />
                     </svg>
+                    <span className="text-white">
                     {genre}
+                    </span>
                   </a>
                 ))}
               </div>

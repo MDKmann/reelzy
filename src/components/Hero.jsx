@@ -4,9 +4,9 @@
     const Hero = () => {
         return (
          <>
-           <div className="flex justify-center text-center">
+           <div className="flex justify-center text-center text-white">
              <div className="flex flex-col items-center">
-              <h1>Your site to find your next favorite show and we make it REELZY for YOU!</h1>
+              <h1>Your site to find your next favorite show and we make it <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-sky-400">REEL</span>ZY for YOU!</h1>
               <h3 className="my-6">Don{"'"}t you want to stop doomscrolling all of your streaming platforms?
                 <br />
                  Let us help you watch your movie instead of searching for it.</h3>

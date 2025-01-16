@@ -12,20 +12,19 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 // import { useSearchState } from "../hooks/useSearchState";
 // import { useEffect } from "react";
-import topMovies from "../data/topMovies.json"
+import topMovies from "../data/topMovies.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { fixTime } from "../utils/fixTime";
 import { Link } from "react-router-dom";
 
 const MovieCarousel = () => {
-//   const { data } = useSearchState();
+  //   const { data } = useSearchState();
 
+  // useEffect(() => {}, [data])
 
-// useEffect(() => {}, [data])
-  
   return (
-    <div className="container m-auto mt-16 flex w-full max-w-screen-lg items-center justify-center h-full">
+    <div className="container mx-auto mt-16 flex w-full max-w-screen-lg items-center justify-center h-full">
       <Swiper
         slidesPerView={1}
         spaceBetween={10}
@@ -60,7 +59,7 @@ const MovieCarousel = () => {
         breakpoints={{
           "@0.00": {
             slidesPerView: 1,
-            spaceBetween: 10,
+            spaceBetween: 0,
           },
           "@0.75": {
             slidesPerView: 2,
@@ -79,10 +78,7 @@ const MovieCarousel = () => {
         className="swiper-container"
       >
         {topMovies?.map((movie) => (
-          <SwiperSlide
-            key={movie.imdbID}
-            className="my-10 mx-6"
-          >
+          <SwiperSlide key={movie.imdbID} className="my-10 sm:mx-6 px-20 sm:px-0">
             <Link to={`/${movie.imdbID}`}>
               <div className=" sm:hover:card-hover-shadow transition-group group relative rounded-2xl hover:scale-105 m-auto">
                 <div className="absolute inset-0 flex items-end rounded-2xl sm:border sm:border-[#b1b1b166] bg-gradient-to-t from-black/60 to-transparent">
@@ -90,7 +86,10 @@ const MovieCarousel = () => {
                     <h3 className="mb-2 sm:text-xl font-bold">{movie.Title}</h3>
                     <div className="mt-4 space-x-4 opacity-0 transition-opacity delay-500 group-hover:opacity-100">
                       <span>
-                        <FontAwesomeIcon icon={faStar} /> {movie.imdbRating}/10
+                        <span className="text-yellow-400">
+                          <FontAwesomeIcon icon={faStar} />
+                        </span>{" "}
+                        {movie.imdbRating}/10
                       </span>
                       <span>{movie.Rated}</span>
                       <span>{fixTime(movie.Runtime)}</span>

@@ -19,7 +19,9 @@ const MovieCard = ({ movie }) => {
             <h3 className="mb-2 text-xl font-bold">{movie.Title}</h3>
             <div className="mt-4 space-x-4 opacity-0 transition-opacity delay-500 group-hover:opacity-100">
               <span>
-                <FontAwesomeIcon icon={faStar} /> {movie.imdbRating}/10
+                <span className="text-yellow-400">
+                <FontAwesomeIcon icon={faStar} />
+                  </span> {movie.imdbRating}/10
               </span>
               <span>{movie.Rated}</span>
               <span>{runtimeRef.current}</span>
