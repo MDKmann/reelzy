@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import SlidersSVG from "./SlidersSVG";
 
 export function SearchBar() {
-  const [filter, setFilter] = useState("");
+  // const [filter, setFilter] = useState("");
   const { searchValue, setSearchValue, refetch } = useFetchMovies();
   const { data, setData, resetData } = useSearchState(
     "searchResults",
@@ -29,27 +29,43 @@ export function SearchBar() {
 
   // handleSortMovies(event, setData)
 
-  useEffect(() => {
-    function sortMovies(filter) {
-      console.log(filter);
-      let movies = data;
+  function sortMovies(filter) {
+    console.log(filter);
+    let movies = data;
+    console.log(movies)
 
-      if (filter === "YEAR_HIGH_TO_LOW") {
-        setData(movies.toSorted((b, a) => a.Released - b.released));
-      }
-      // if (value === "YEAR_HIGH_TO_LOW") {
-      //   movies.sort((a, b) => Date.parse(b.Released) - Date.parse(a.Released));
-      // } else if (value === "YEAR_LOW_TO_HIGH") {
-      //   movies.sort((a, b) => Date.parse(a.Released) - Date.parse(b.Released));
-      // } else if (value === "RATING_HIGH_TO_LOW") {
-      //   movies.sort((a, b) => Number(b.imdbRating) - Number(a.imdbRating));
-      // } else if (value === "RATING_LOW_TO_HIGH") {
-      //   movies.sort((a, b) => Number(a.imdbRating) - Number(b.imdbRating));
-      // }
+    if (filter === "YEAR_HIGH_TO_LOW") {
+      setData(
+        movies.toSorted(
+          (b, a) => Date.parse(a.Released) - Date.parse(b.Released)
+        )
+      );
     }
+    if (filter === "YEAR_LOW_TO_HIGH") {
+      setData(
+        movies.toSorted(
+          (a, b) => Date.parse(a.Released) - Date.parse(b.Released)
+        )
+      );
+    }
+    if (filter === "RATING_HIGH_TO_LOW") {
+      setData(
+        movies.toSorted((b, a) => (a.imdbRating) - (b.imdbRating))
+      );
+    }
+    if (filter === "RATING_LOW_TO_HIGH") {
+      setData(
+        movies.toSorted((b, a) => Number(a.imdbRating) - Number(b.imdbRating))
+      );
+    }
+    console.log(movies)
+  }
+
+  useEffect(() => {
     sortMovies();
     refetch;
-  }, [filter]);
+    console.log(data)
+  }, [data, setData, resetData]);
 
   return (
     <div className="m-4 flex justify-center">
@@ -62,10 +78,12 @@ export function SearchBar() {
               <SlidersSVG />
             </div>
             <select
-              defaultValue=""
+              id="filter"
+              defaultValue="DEFAULT"
+              onChange={(event) => sortMovies(event.target.value)}
               className=" w-8 h-10 px-5 pr-10 rounded-full text-sm select-anim"
             >
-              <option value="" disabled selected="">
+              <option value="DEFAULT" disabled>
                 Sort
               </option>
               <option value="YEAR_HIGH_TO_LOW">
