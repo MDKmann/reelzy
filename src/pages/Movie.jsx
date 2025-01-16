@@ -1,5 +1,9 @@
 import { faCalendarAlt, faClock } from "@fortawesome/free-regular-svg-icons";
-import { faStar, faChalkboardUser, faList,  } from "@fortawesome/free-solid-svg-icons";
+import {
+  faStar,
+  faChalkboardUser,
+  faList,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
@@ -16,7 +20,7 @@ const MovieDetails = () => {
 
   const { id } = useParams();
 
-  const runtimeRef = useRef('')
+  const runtimeRef = useRef("");
 
   useEffect(() => {
     async function fetchMovieDetails() {
@@ -30,7 +34,7 @@ const MovieDetails = () => {
       const actorsArray = actorsString.split(", ");
       setActors(actorsArray);
 
-      runtimeRef.current = fixTime(data.Runtime)
+      runtimeRef.current = fixTime(data.Runtime);
 
       setMovie(data);
     }
@@ -43,7 +47,7 @@ const MovieDetails = () => {
       <SearchBar />
       <section className="bg-white py-8 antialiased md:py-16 dark:bg-gray-900">
         <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
-          <div className="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
+          {/* <div className="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
             <div className="mx-auto max-w-md shrink-0 lg:max-w-lg">
               <img className="w-full dark:hidden threeD_img" src={movie.Poster} alt="" />
               <img
@@ -159,6 +163,87 @@ const MovieDetails = () => {
                     <span className="text-white">
                     {genre}
                     </span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div> */}
+          <div className="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
+            <div className="mx-auto max-w-md shrink-0 lg:max-w-lg">
+              <img className="w-full movie-card-img bg-gray-700 rounded-md" />
+            </div>
+
+            <div className="mt-6 sm:mt-8 lg:mt-0">
+              <h1 className="h-5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></h1>
+              <div className="mt-4 sm:flex sm:items-center sm:gap-4">
+                <p className="h-5 bg-gray-200 rounded-full dark:bg-gray-700 w-16 mb-4"></p>
+
+                <div className="mt-2 flex items-center gap-2 sm:mt-0">
+                  <div className="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-36 mb-4"></div>
+                </div>
+              </div>
+
+              <div className="mt-2 sm:mt-4 sm:flex sm:items-center sm:gap-4"></div>
+
+              <div className="h-3 bg-gray-200 rounded-full dark:bg-gray-700 w-36 mb-4"></div>
+              <div className="mt-6 sm:mt-8 sm:flex sm:items-center sm:gap-4">
+                <div className="mt-6 sm:mt-8 sm:flex sm:items-start sm:gap-4 col-start-2">
+                  {actors?.map((actor) => (
+                    <a
+                      key={actor}
+                      href="#"
+                      title=""
+                      className="hover:text-primary-700 flex items-center justify-center rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 my-2 sm:my-0 max-w-[350px]"
+                      role="button"
+                    >
+                      <svg
+                        className="-ms-2 me-2 h-5 w-5"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                      </svg>
+                      <span className="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-36"></span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <hr className="my-6 border-gray-200 md:my-8 dark:border-gray-800" />
+
+              <p className="mb-6 text-gray-500 dark:text-gray-400">
+              <div className="h-3 bg-gray-200 rounded-full dark:bg-gray-700 w-84 mb-3"></div>
+              <div className="h-3 bg-gray-200 rounded-full dark:bg-gray-700 w-84 mb-3"></div>
+              <div className="h-3 bg-gray-200 rounded-full dark:bg-gray-700 w-84 mb-3"></div>
+              <div className="h-3 bg-gray-200 rounded-full dark:bg-gray-700 w-84 mb-3"></div>
+              <div className="h-3 bg-gray-200 rounded-full dark:bg-gray-700 w-60 mb-3"></div>
+              </p>
+
+              <p className="h-3 bg-gray-200 rounded-full dark:bg-gray-700 w-72 mb-4"></p>
+
+              <div className="mt-6 sm:mt-8 sm:flex sm:items-start sm:gap-4 col-start-2">
+                {genres?.map((genre) => (
+                  <a
+                    key={genre}
+                    href="#"
+                    title=""
+                    className="hover:text-primary-700 flex items-center justify-center rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 my-2 sm:my-0 max-w-[350px]"
+                    role="button"
+                  >
+                    <svg
+                      className="-ms-2 me-2 h-5 w-5"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                    </svg>
+                    <span className="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-36"></span>
                   </a>
                 ))}
               </div>
