@@ -148,11 +148,11 @@ body {
   .movie-card-img {
     @apply sm:w-[300px] sm:h-[444px];
   }
-  .movie-card-img {
+  /* .movie-card-img {
     @apply sm:w-[300px] sm:h-[444px] max-[400px]:min-w-[250px] max-[400px]:min-h-[355px]  ;
   }
-  .
   
+   */
   .image-lift {
     @apply shadow-[rgba(22,31,39,0.42)_0px_60px_123px_-25px,rgba(19,26,32,0.08)_0px_35px_75px_-35px] border rounded-[10px] border-solid border-[rgb(213,220,226)_rgb(213,220,226)_rgb(184,194,204)] origin-top transform-perspective;
   }

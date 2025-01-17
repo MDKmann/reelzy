@@ -81,7 +81,7 @@ export function SearchBar() {
               id="filter"
               defaultValue="DEFAULT"
               onChange={(event) => sortMovies(event.target.value)}
-              className=" w-8 h-10 px-5 pr-10 rounded-full text-sm select-anim"
+              className="text-gray-400 w-8 h-10 px-5 pr-10 rounded-full text-sm select-anim"
             >
               <option value="DEFAULT" disabled>
                 Sort
@@ -100,57 +100,7 @@ export function SearchBar() {
               </option>
             </select>
           </label>
-          {/* <button className="peer relative z-10 block p-2 transition-colors duration-300 transform rounded-lg focus:outline-none border-2 border-blue-500">
-            <SlidersSVG />
-          </button>
 
-          <div className="hidden peer-focus:block absolute right-0 z-20 w-48 mt-2 overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800 border">
-            <a
-              href="#"
-              className=" block px-4 py-2 text-sm text-gray-800 transition-colors duration-300 transform border-b dark:text-gray-200 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700"
-            >
-             
-              <span className="text-gray-600 dark:text-gray-400">
-                SORT
-              </span>
-            </a>
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-800 transition-colors duration-300 transform border-b dark:text-gray-200 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700"
-            >
-              small
-              <span className="text-gray-600 dark:text-gray-400">
-                Year Released, Newest to Oldest
-              </span>
-            </a>
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-800 transition-colors duration-300 transform border-b dark:text-gray-200 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700"
-            >
-              medium
-              <span className="text-gray-600 dark:text-gray-400">
-                Year Released, Oldest to Newest
-              </span>
-            </a>
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-800 transition-colors duration-300 transform dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-            >
-              large
-              <span className="text-gray-600 dark:text-gray-400">
-                Rating, Highest to Lowest
-              </span>
-            </a>
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-800 transition-colors duration-300 transform dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-            >
-              large
-              <span className="text-gray-600 dark:text-gray-400">
-                Rating, Lowest to Highest
-              </span>
-            </a>
-          </div> */}
         </div>
 
         <form className="flex grow" onSubmit={handleSubmit}>
@@ -159,6 +109,7 @@ export function SearchBar() {
             value={searchValue}
             onChange={(event) => setSearchValue(event.target.value)}
             placeholder="Search by title . . ."
+            required
             className="flex grow w-full bg-[#0d1829] bg-transparent pl-2 text-[#cccccc] focus:outline-none z-10 outline-0"
           />
           <button

@@ -12,9 +12,7 @@ const MovieCard = ({ movie }) => {
     const image = new Image();
     image.src = movie.Poster;
     image.onload = () => {
-      setTimeout(() => {
-        setImg(image);
-      }, 300);
+      setImg(image);
     };
   }, []);
 
