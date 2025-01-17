@@ -53,8 +53,8 @@ const MovieDetails = () => {
 
   return (
     <>
-      <SearchBar />
-      <section className="bg-white py-8 antialiased md:py-16 dark:bg-gray-900">
+      <SearchBar /> 
+      <section className=" py-8 antialiased md:py-16bg-gray-900">
         <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
           {imageLoaded(movie)}
           {img ? (
@@ -62,23 +62,18 @@ const MovieDetails = () => {
               <div className="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
                 <div className="mx-auto max-w-md shrink-0 lg:max-w-lg">
                   <img
-                    className="w-full dark:hidden threeD_img"
-                    src={movie.Poster}
-                    alt=""
-                  />
-                  <img
-                    className="hidden w-full dark:block threeD_img"
+                    className=" w-full threeD_img"
                     src={movie.Poster}
                     alt=""
                   />
                 </div>
 
                 <div className="mt-6 sm:mt-8 lg:mt-0">
-                  <h1 className="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
+                  <h1 className="text-xl font-semibold sm:text-2xl text-white">
                     {movie.Title}
                   </h1>
                   <div className="mt-4 sm:flex sm:items-center sm:gap-4">
-                    <p className="text-2xl font-extrabold text-gray-900 sm:text-3xl dark:text-white">
+                    <p className="text-2xl font-extrabold sm:text-3xl text-white">
                       {movie.Rated}
                     </p>
 
@@ -87,7 +82,7 @@ const MovieDetails = () => {
                         <FontAwesomeIcon icon={faStar} />
                       </div>
 
-                      <p className="text-lg font-medium leading-none text-gray-500 dark:text-gray-400">
+                      <p className="text-lg font-medium leading-none text-gray-400">
                         {movie.imdbRating}/10
                       </p>
                     </div>
@@ -100,7 +95,7 @@ const MovieDetails = () => {
                       <FontAwesomeIcon icon={faCalendarAlt} />
                     </div>
 
-                    <p className="text-sm font-medium leading-none text-gray-500 dark:text-gray-400">
+                    <p className="text-sm font-medium leading-none text-gray-400">
                       {movie.Year}
                     </p>
 
@@ -110,7 +105,7 @@ const MovieDetails = () => {
 
                     <a
                       href="#"
-                      className="text-sm font-medium leading-none text-gray-900  dark:text-white"
+                      className="text-sm font-medium leading-none text-white"
                     >
                       {runtimeRef.current}
                     </a>
@@ -122,7 +117,7 @@ const MovieDetails = () => {
                           key={actor}
                           href="#"
                           title=""
-                          className="hover:text-primary-700 flex items-center justify-center rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 my-2 sm:my-0 max-w-[350px]"
+                          className="hover:text-primary-700 flex items-center justify-center rounded-lg border px-5 py-2.5 text-sm font-medium focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 border-gray-600 bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-gray-700 my-2 sm:my-0 max-w-[350px]"
                           role="button"
                         >
                           <svg
@@ -142,7 +137,7 @@ const MovieDetails = () => {
                     </div>
                   </div>
 
-                  <hr className="my-6 border-gray-200 md:my-8 dark:border-gray-800" />
+                  <hr className="my-6  md:my-8 border-gray-800" />
 
                   <p className="mb-6 text-gray-500 dark:text-gray-400">
                     {movie.Plot}
@@ -158,7 +153,7 @@ const MovieDetails = () => {
                         key={genre}
                         href="#"
                         title=""
-                        className="hover:text-primary-700 flex items-center justify-center rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 my-2 sm:my-0 max-w-[350px]"
+                        className="hover:text-primary-700 flex items-center justify-center rounded-lg border px-5 py-2.5 text-sm font-medium focus:z-10 focus:outline-none focus:ring-4 border-gray-600 bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-gray-700 my-2 sm:my-0 max-w-[350px]"
                         role="button"
                       >
                         <svg
