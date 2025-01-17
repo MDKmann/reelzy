@@ -145,11 +145,11 @@ body {
   .movie-card {
     @apply max-w-[300px] max-h-[444px] aspect-[4.44/3] h-full w-full;
   }
-  /* .movie-card-img {
-    @apply sm:w-[300px] sm:h-[444px];
-  } */
   .movie-card-img {
-    @apply min-w-[250px] min-h-[355px]  sm:w-[300px] sm:h-[444px];
+    @apply sm:w-[300px] sm:h-[444px];
+  }
+  .movie-card-img {
+    @apply sm:w-[300px] sm:h-[444px] max-[400px]:min-w-[250px] max-[400px]:min-h-[355px]  ;
   }
   .
   
