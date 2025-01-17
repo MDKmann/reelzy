@@ -60,9 +60,9 @@ const MovieDetails = () => {
           {img ? (
             <>
               <div className="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
-                <div className="mx-auto max-w-md shrink-0 lg:max-w-lg">
+                <div className="mx-auto max-w-[300px] max-h-[444px] shrink-0 lg:max-w-lg card-shadow-dark rounded-lg">
                   <img
-                    className=" w-full threeD_img"
+                    className=" w-full movie-card-img mx-auto rounded-xl border border-gray-900"
                     src={movie.Poster}
                     alt=""
                   />
@@ -115,7 +115,9 @@ const MovieDetails = () => {
                       {actors?.map((actor) => (
                         <a
                           key={actor}
-                          href="#"
+                          href={`https://www.google.com/search?q=${actor}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           title=""
                           className="hover:text-primary-700 flex items-center justify-center rounded-lg border px-5 py-2.5 text-sm font-medium focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 border-gray-600 bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-gray-700 my-2 sm:my-0 max-w-[350px]"
                           role="button"
@@ -191,7 +193,7 @@ const MovieDetails = () => {
                       >
                         <FontAwesomeIcon icon="fa-solid fa-ticket" />
                       </svg>
-                      <span >Watch</span>
+                      <span>Watch</span>
                     </a>
                   </div>
                 </div>
