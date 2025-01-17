@@ -11,10 +11,10 @@ import Search from "./pages/Search";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { faCalendarAlt, faClock } from "@fortawesome/free-regular-svg-icons";
-import { faChalkboardUser, faList, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faChalkboardUser, faList, faStar, faTicket } from "@fortawesome/free-solid-svg-icons";
 import Movie from "./pages/Movie";
 
-library.add(fab, faStar, faChalkboardUser, faList, faCalendarAlt, faClock);
+library.add(fab, faStar, faChalkboardUser, faList, faCalendarAlt, faClock, faTicket);
 
 const App = () => {
 

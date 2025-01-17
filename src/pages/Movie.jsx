@@ -53,8 +53,8 @@ const MovieDetails = () => {
 
   return (
     <>
-      <SearchBar /> 
-      <section className=" py-8 antialiased md:py-16bg-gray-900">
+      <SearchBar />
+      <section className=" py-8 antialiased md:py-16 bg-gray-900">
         <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
           {imageLoaded(movie)}
           {img ? (
@@ -170,6 +170,29 @@ const MovieDetails = () => {
                         <span className="text-white">{genre}</span>
                       </a>
                     ))}
+                  </div>
+                  <div className="mt-16 flex justify-center">
+                    <a
+                      id="watch"
+                      href={`https://www.google.com/search?q=Watch+${movie.Title}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      role="button"
+                      className="hover:text-primary-700 flex items-center justify-center rounded-lg border px-8 py-3 text-lg font-medium focus:z-10 focus:outline-none focus:ring-4 border-gray-600 bg-red-700 text-gray-200 hover:bg-red-600 hover:text-white focus:ring-gray-700 my-2 sm:my-0 max-w-[350px]"
+                    >
+                      <svg
+                        className="-ms-2 me-2 h-5 w-5"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <FontAwesomeIcon icon="fa-solid fa-ticket" />
+                      </svg>
+                      <span >Watch</span>
+                    </a>
                   </div>
                 </div>
               </div>
