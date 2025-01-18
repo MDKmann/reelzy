@@ -105,7 +105,7 @@ const MovieDetails = () => {
 
                     <a
                       href="#"
-                      className="text-sm font-medium leading-none text-white"
+                      className="text-sm font-medium leading-none text-gray-400"
                     >
                       {runtimeRef.current}
                     </a>
@@ -173,7 +173,8 @@ const MovieDetails = () => {
                       </a>
                     ))}
                   </div>
-                  <div className="mt-16 flex justify-center">
+                  <hr className=" sm:hidden mt-12 border-gray-800" />
+                  <div className="sm:hidden mt-8 flex justify-center">
                     <a
                       id="watch"
                       href={`https://www.google.com/search?q=Watch+${movie.Title}`}
@@ -197,6 +198,30 @@ const MovieDetails = () => {
                     </a>
                   </div>
                 </div>
+              </div>
+              <hr className="mt-16  lg:my-12 border-gray-800" />
+              <div className=" hidden sm:flex mt-16 lg:my-12 justify-center">
+                <a
+                  id="watch"
+                  href={`https://www.google.com/search?q=Watch+${movie.Title}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  role="button"
+                  className="hover:text-primary-700 flex items-center justify-center rounded-lg border px-8 py-3 text-lg font-medium focus:z-10 focus:outline-none focus:ring-4 border-gray-600 bg-red-700 text-gray-200 hover:bg-red-600 hover:text-white focus:ring-gray-700 my-2 sm:my-0 max-w-[350px]"
+                >
+                  <svg
+                    className="-ms-2 me-2 h-5 w-5"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <FontAwesomeIcon icon="fa-solid fa-ticket" />
+                  </svg>
+                  <span>Watch</span>
+                </a>
               </div>
             </>
           ) : (
