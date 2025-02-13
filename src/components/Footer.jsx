@@ -12,26 +12,26 @@ export function Footer() {
         </h4>
         <a
           className="focus:ring-offset-sky-999 mt-8 inline-block rounded-full border border-transparent bg-blue-800 px-12 py-5 text-lg font-medium leading-tight shadow-xl hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 xl:mt-12"
-          href="#"
+          href="mailto:MDKuhlmann@zoho.com"
         >
           Contact
         </a>
         <div className="mt-14 xl:mt-20">
           <nav className="flex flex-wrap justify-center text-lg font-medium">
             <div className="px-5 py-2">
-              <a href="#">LinkedIn</a>
+              <a href="https://www.linkedin.com/in/michael-kuhlmann-developer/">LinkedIn</a>
             </div>
             <div className="px-5 py-2">
-              <a href="#">GitHub</a>
+              <a href="https://github.com/MDKmann">GitHub</a>
             </div>
             <div className="px-5 py-2">
-              <a href="#">ePortfolio</a>
+              <a href="https://github.com/MDKmann">ePortfolio</a>
             </div>
             <div className="px-5 py-2">
-              <a href="#">Resume</a>
+              <a href="https://docs.google.com/document/d/1K5kr-6ZZMqXTpbL05-OLXOVwDuwQfRZ8/edit?usp=sharing&ouid=107198101460900906434&rtpof=true&sd=true">Resume</a>
             </div>
           </nav>
-          <p className="mt-7 text-base">© 2024 REELZY - Michael Kuhlmann</p>
+          <p className="mt-7 text-base">© 2025 REELZY - Michael Kuhlmann</p>
         </div>
       </div>
     </footer>

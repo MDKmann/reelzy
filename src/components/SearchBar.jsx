@@ -3,10 +3,10 @@ import MagnifySVG from "./MagnifySVG";
 import useFetchMovies from "../hooks/useFetchMovies";
 import { useSearchState } from "../hooks/useSearchState";
 // import { handleSortMovies } from "../utils/sortMovies";
-import SortSelect from "./SortSelect";
+;
 
 import { getItem } from "../utils/localStorage";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import SlidersSVG from "./SlidersSVG";
 
 export function SearchBar() {
@@ -71,7 +71,7 @@ export function SearchBar() {
     <div className="m-4 flex justify-center">
       <div className="flex w-full max-w-[600px] rounded-full bg-[#0d1829] px-2">
         <button className="flex cursor-pointer self-center bg-[#0d1829] p-1"></button>
-        <div className="relative group">
+        <div className="group relative">
           <label alt="filter movies"
           >
             <div className="absolute mx-4 my-2 group-focus:opacity-0 group-hover:opacity-0 group-active:opacity-0 group:transition-all">
