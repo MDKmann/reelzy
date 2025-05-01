@@ -113,6 +113,20 @@ body {
   border-radius: 50px;
 } */
 
+/* .swiper {
+  overflow: visible !important;
+  padding-inline: 1rem !important;
+}
+
+.swiper-wrapper {
+  overflow: visible !important;
+} */
+
+.swiper-slide {
+ display: flex !important;
+ align-items: center !important;
+ justify-content: center !important;
+}
 
 @layer utilities {
   h1 {

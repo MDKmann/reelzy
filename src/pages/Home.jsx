@@ -13,7 +13,7 @@ import { SearchBar } from "../components/SearchBar";
 const Home = () => {
   return (
     <>
-      <div className="flex items-center h-3/4 flex-col">
+      <div className="flex h-4/5 flex-col items-center">
         <div className="movie-banner-bg -z-50 "></div>
         <div className="shadow-inner-xl -z-40"></div>
         <Hero />
