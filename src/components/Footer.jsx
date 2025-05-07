@@ -19,16 +19,20 @@ export function Footer() {
         <div className="mt-14 xl:mt-20">
           <nav className="flex flex-wrap justify-center text-lg font-medium">
             <div className="px-5 py-2">
-              <a href="https://www.linkedin.com/in/michael-kuhlmann-developer/">LinkedIn</a>
+              <a href="https://www.linkedin.com/in/michael-kuhlmann-developer/">
+                LinkedIn
+              </a>
             </div>
             <div className="px-5 py-2">
               <a href="https://github.com/MDKmann">GitHub</a>
             </div>
             <div className="px-5 py-2">
-              <a href="https://github.com/MDKmann">ePortfolio</a>
+              <a href="https:/michael-kuhlmann.com">ePortfolio</a>
             </div>
             <div className="px-5 py-2">
-              <a href="https://docs.google.com/document/d/1K5kr-6ZZMqXTpbL05-OLXOVwDuwQfRZ8/edit?usp=sharing&ouid=107198101460900906434&rtpof=true&sd=true">Resume</a>
+              <a href="https://drive.google.com/drive/folders/1XzGVYIDvfv7Fo1cjb2wcrAv465IiQ20a?usp=sharing">
+                Resume
+              </a>
             </div>
           </nav>
           <p className="mt-7 text-base">© 2025 REELZY - Michael Kuhlmann</p>

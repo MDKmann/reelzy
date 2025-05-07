@@ -14,7 +14,7 @@ import "swiper/css/navigation";
 // import { useEffect } from "react";
 import topMovies from "../data/topMovies.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft, faChevronRight, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft, faChevronRight, faCircle, faStar } from "@fortawesome/free-solid-svg-icons";
 import { fixTime } from "../utils/fixTime";
 import { Link } from "react-router-dom";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -41,7 +41,7 @@ const MovieCarousel = () => {
     <div className="container mx-auto mt-16 flex w-full max-w-screen-xl items-center relative justify-center h-full overflow-visible px-8 sm:px-16 ">
       {/* Left Arrow */}
       <button
-        className="absolute -left-2 top-1/2 z-10 -translate-y-1/2 p-3 ml-12 text-white bg-black/50 hover:bg-black rounded-full"
+        className="absolute -left-2 lg:-left-8 top-1/2 z-10 -translate-y-1/2  ml-12 rounded-full hover:scale-105 transition-all hover:transition-all duration-300 hover:duration-300"
         onClick={() => swiperRef.current?.slidePrev()}
         aria-label="Previous"
       >
@@ -59,12 +59,18 @@ const MovieCarousel = () => {
             d="M15.75 19.5L8.25 12l7.5-7.5"
           />
         </svg> */}
-        <FontAwesomeIcon icon={faChevronLeft} />
+        <div className="fa-layers fa-fw text-5xl hidden sm:block">
+          <FontAwesomeIcon
+            icon={faCircle}
+            className="text-white/25 border border-white/50 rounded-full shadow-[0_2px_12px_1px_rgba(255,255,255,0.25)]"
+          />
+          <FontAwesomeIcon icon={faChevronLeft} inverse transform="shrink-8" />
+        </div>
       </button>
 
       {/* Right Arrow */}
       <button
-        className="absolute -right-2 top-1/2 z-10 -translate-y-1/2 p-3 mr-12 text-white bg-black/50 hover:bg-black rounded-full"
+        className="absolute -right-2 lg:-right-8 top-1/2 z-10 -translate-y-1/2 mr-12 rounded-full hover:scale-105 transition-all hover:transition-all duration-300 hover:duration-300"
         onClick={() => swiperRef.current?.slideNext()}
         aria-label="Next"
       >
@@ -82,7 +88,13 @@ const MovieCarousel = () => {
             d="M8.25 4.5l7.5 7.5-7.5 7.5"
           />
         </svg> */}
-        <FontAwesomeIcon icon={faChevronRight} />
+        <div className="fa-layers fa-fw text-5xl hidden sm:block">
+          <FontAwesomeIcon
+            icon={faCircle}
+            className="text-white/25 border border-white/50 rounded-full shadow-[0_2px_12px_1px_rgba(255,255,255,0.25)]"
+          />
+          <FontAwesomeIcon icon={faChevronRight} inverse transform="shrink-8" />
+        </div>
       </button>
 
       {/* <Swiper
@@ -148,31 +160,40 @@ const MovieCarousel = () => {
           },
         }}
         modules={[EffectCoverflow, Pagination, Navigation, Keyboard]}
-        className="w-full overflow-visible [clip-path:inset(0_0_0_0)]"
+        className="w-full "
       >
         {topMovies?.map((movie) => (
-          <SwiperSlide
-            key={movie.imdbID}
-            className="my-10 sm:mx-0 overflow-visible"
-          >
+          <SwiperSlide key={movie.imdbID} className="my-10 sm:mx-0">
             {imageLoaded(movie)}
             {img ? (
               <>
-                <div className="inline-block ">
+                <div className="inline-block h-full w-full scale-[0.9]">
                   <Link to={`/${movie.imdbID}`}>
-                    <div className="group relative hover:scale-105 transition-transform rounded-2xl">
-                      <img
+                    <div
+                      style={{
+                        backgroundImage: `url(${movie.Poster})`,
+                        backgroundSize: "contain",
+                        backgroundPosition: "center",
+                      }}
+                      className="group relative flex items-end hover:scale-105 transition-group transition-transform rounded-2xl aspect-[2/3] h-auto w-full sm:hover:card-hover-shadow sm:border sm:border-[#b1b1b166]"
+                    >
+                      <div className="absolute  bg-gradient-to-t from-black/60 to-transparent h-full w-full aspect-[2/3] rounded-2xl "></div>
+                      {/* <img
                         src={movie.Poster}
                         alt={movie.Title}
-                        className="h-auto max-w-full rounded-2xl object-contain"
+                        className=" rounded-2xl object-contain"
                         loading="lazy"
-                      />
-                      <div className="absolute bottom-0 w-full bg-gradient-to-t from-black/60 to-transparent p-4 text-white">
-                        <h3 className="font-bold text-lg">{movie.Title}</h3>
-                        <div className="space-x-2 text-sm">
-                          <span className="text-yellow-400">
-                            <FontAwesomeIcon icon={faStar} /> {movie.imdbRating}
-                            /10
+                      /> */}
+                      <div className="z-10 transition-secondary sm:translate-y-8 p-4 text-white group-hover:translate-y-0">
+                        <h3 className="mb-2 sm:text-xl font-bold">
+                          {movie.Title}
+                        </h3>
+                        <div className="mt-4 space-x-4 sm:opacity-0 transition-opacity delay-500 group-hover:opacity-100">
+                          <span>
+                            <span className="text-yellow-400">
+                              <FontAwesomeIcon icon={faStar} />
+                            </span>{" "}
+                            {movie.imdbRating}/10
                           </span>
                           <span>{movie.Rated}</span>
                           <span>{fixTime(movie.Runtime)}</span>

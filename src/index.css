@@ -113,20 +113,27 @@ body {
   border-radius: 50px;
 } */
 
-/* .swiper {
-  overflow: visible !important;
-  padding-inline: 1rem !important;
-}
+/* 
 
-.swiper-wrapper {
-  overflow: visible !important;
-} */
+*/
 
 .swiper-slide {
  display: flex !important;
  align-items: center !important;
  justify-content: center !important;
 }
+
+.test-navbar {
+ border: 1px solid rgba(255, 255, 255, .15);
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 12px 1px rgba(255, 255, 255, 0.25);
+
+  backdrop-filter: blur(8px);
+}
+
+
+
 
 @layer utilities {
   h1 {
