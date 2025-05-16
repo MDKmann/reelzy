@@ -18,7 +18,7 @@ body {
 }
 
 .movie-banner-bg {
-  background-image: url("/public/assets/images/Movie\ Wallpaper.svg");
+  background-image: url("/public/assets/images/moviePosterWallpaper.svg");
   background-size: cover;
   /* filter: brightness(25%); */
   position: absolute;
