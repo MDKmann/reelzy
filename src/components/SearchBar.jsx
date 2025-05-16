@@ -3,8 +3,6 @@ import MagnifySVG from "./MagnifySVG";
 import useFetchMovies from "../hooks/useFetchMovies";
 import { useSearchState } from "../hooks/useSearchState";
 // import { handleSortMovies } from "../utils/sortMovies";
-;
-
 import { getItem } from "../utils/localStorage";
 import { useEffect } from "react";
 import SlidersSVG from "./SlidersSVG";
@@ -32,7 +30,7 @@ export function SearchBar() {
   function sortMovies(filter) {
     console.log(filter);
     let movies = data;
-    console.log(movies)
+    console.log(movies);
 
     if (filter === "YEAR_HIGH_TO_LOW") {
       setData(
@@ -49,31 +47,30 @@ export function SearchBar() {
       );
     }
     if (filter === "RATING_HIGH_TO_LOW") {
-      setData(
-        movies.toSorted((b, a) => (a.imdbRating) - (b.imdbRating))
-      );
+      setData(movies.toSorted((b, a) => a.imdbRating - b.imdbRating));
     }
     if (filter === "RATING_LOW_TO_HIGH") {
       setData(
         movies.toSorted((b, a) => Number(a.imdbRating) - Number(b.imdbRating))
       );
     }
-    console.log(movies)
+    console.log(movies);
   }
 
   useEffect(() => {
     sortMovies();
     refetch;
-    console.log(data)
+    console.log(data);
   }, [data, setData, resetData]);
 
   return (
-    <div className="m-4 flex justify-center">
+    <div className="my-4 mx-6 flex justify-center ">
       <div className="flex w-full max-w-[600px] rounded-full bg-[#0d1829] px-2">
         <button className="flex cursor-pointer self-center bg-[#0d1829] p-1"></button>
-        <div className="group relative">
-          <label alt="filter movies"
-          >
+        <div
+        id="sort"
+        className="group relative">
+          <label alt="filter movies">
             <div className="absolute mx-4 my-2 group-focus:opacity-0 group-hover:opacity-0 group-active:opacity-0 group:transition-all">
               <SlidersSVG />
             </div>
@@ -100,7 +97,6 @@ export function SearchBar() {
               </option>
             </select>
           </label>
-
         </div>
 
         <form className="flex grow" onSubmit={handleSubmit}>
@@ -121,5 +117,6 @@ export function SearchBar() {
         </form>
       </div>
     </div>
+
   );
 }

@@ -38,7 +38,7 @@ const MovieCarousel = () => {
 
   return (
     // <div className="container mx-auto mt-16 flex w-full max-w-screen-xl items-center relative justify-center h-full">
-    <div className="container mx-auto mt-16 flex w-full max-w-screen-xl items-center relative justify-center h-full overflow-visible px-8 sm:px-16 ">
+    <div className="container mx-auto -mt-16 flex w-full max-w-screen-xl items-center relative justify-center h-full overflow-visible px-8 sm:px-16 ">
       {/* Left Arrow */}
       <button
         className="absolute -left-2 lg:-left-8 top-1/2 z-10 -translate-y-1/2  ml-12 rounded-full hover:scale-105 transition-all hover:transition-all duration-300 hover:duration-300"

@@ -13,13 +13,15 @@ import { SearchBar } from "../components/SearchBar";
 const Home = () => {
   return (
     <>
-      <div className="flex h-4/5 flex-col items-center">
+      <div className="h-screen flex-col items-center justify-center">
         <div className="movie-banner-bg -z-50 "></div>
         <div className="shadow-inner-xl -z-40"></div>
-        <Hero />
-        <SearchBar />
-        <MovieCarousel />
+        <div className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 w-full mx-auto">
+          <Hero />
+          <SearchBar />
+        </div>
       </div>
+      <MovieCarousel />
     </>
   );
 };

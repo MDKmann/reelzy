@@ -18,14 +18,14 @@ body {
 }
 
 .movie-banner-bg {
-  background-image: url("../public/assets/images/rPlexPoster.jpg");
+  background-image: url("/public/assets/images/Movie\ Wallpaper.svg");
   background-size: cover;
-  filter: brightness(25%);
+  /* filter: brightness(25%); */
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 75%;
+  height: 100%;
 }
 
 .shadow-inner-xl {
@@ -34,7 +34,17 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 75%;
+  height: 100%;
+}
+
+.hero-text {
+  text-shadow: #000 1px 1px 0, 0px 0px 10px #7A7A7A;
+
+}
+
+
+.hero-text span {
+  text-shadow: none;
 }
 
 .screen-max-width {
