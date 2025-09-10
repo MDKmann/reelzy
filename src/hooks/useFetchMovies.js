@@ -11,45 +11,49 @@ export default function useFetchMovies() {
 
   const [searchValue, setSearchValue] = useState("");
   const debouncedSearch = useDebounce(searchValue);
-  const { setData, resetData } = useSearchState("searchResults", {});
+  const { setData, resetData } = useSearchState("searchResults", []);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const handleSearchRequest = useCallback(async () => {
-    const storedResults = getItem("searchResults");
+    const storedResults = getItem("searchResults") || [];
+    if (!debouncedSearch) {
+      setData(storedResults);
+      return;
+    }
     setIsLoading(true);
-    let fullSearchResults = {};
-    let responseDataSearch = [];
-
-    const { data } = await axios.get(
-      `${BASE_API_URL}s=${debouncedSearch}${KEY}`,
-    );
-
-    responseDataSearch = data.Search;
-
-    if (!responseDataSearch) {
-      responseDataSearch = storedResults;
+    setError(null);
+    try {
+      let fullSearchResults = {};
+      const { data } = await axios.get(
+        `${BASE_API_URL}s=${debouncedSearch}${KEY}`
+      );
+      let responseDataSearch = data?.Search || storedResults;
+      const responseDataIds =
+        responseDataSearch?.map((movie) => movie.imdbID) || [];
+      await Promise.allSettled(
+        responseDataIds.map(async (id) => {
+          const responseMapped = await axios.get(
+            `${BASE_API_URL}i=${id}${KEY}`
+          );
+          const responseMappedData = responseMapped.data;
+          if (responseMappedData?.imdbID)
+            fullSearchResults[responseMappedData.imdbID] = responseMappedData;
+        })
+      );
+      const resultsArray = Object.values(fullSearchResults);
+      setItem("searchResults", resultsArray);
+      setData(resultsArray);
+      if (searchValue) {
+        navigate("/search", { state: { query: searchValue }, replace: true });
+      }
+    } catch {
+      setError("Failed to fetch movies.");
+    } finally {
+      setIsLoading(false);
     }
-
-    const responseDataIds = responseDataSearch?.map((movie) => movie.imdbID);
-    await Promise.allSettled(
-      responseDataIds?.map(async (id) => {
-        // map over search results imdbIDs
-        const responseMapped = await axios.get(`${BASE_API_URL}i=${id}${KEY}`);
-        const responseMappedData = responseMapped.data;
-        // Send request for each id
-        fullSearchResults[responseMappedData.imdbID] = responseMappedData;
-      }),
-    );
-    setItem("searchResults", Object.values(fullSearchResults));
-    setData(Object.values(fullSearchResults));
-    console.log(Object.values(fullSearchResults));
-
-    setIsLoading(false);
-    if (searchValue) {
-      navigate("/search", { state: data, replace: true });
-    }
-  }, [debouncedSearch]);
+  }, [debouncedSearch, navigate, searchValue, setData]);
 
   useEffect(() => {
     handleSearchRequest();
@@ -60,5 +64,7 @@ export default function useFetchMovies() {
     setSearchValue,
     setData,
     refetch: handleSearchRequest,
+    isLoading,
+    error,
   };
 }

@@ -23,32 +23,32 @@ const MovieDetails = () => {
 
   const runtimeRef = useRef("");
 
-  const imageLoaded = useCallback((movie) => {
+  const imageLoaded = useCallback((posterUrl) => {
+    if (!posterUrl) return;
     const image = new Image();
-    image.src = movie.Poster;
-    image.onload = () => {
-      setImg(image);
-    };
+    image.src = posterUrl;
+    image.onload = () => setImg(image);
   }, []);
 
   useEffect(() => {
+    let active = true;
     async function fetchMovieDetails() {
-      const { data } = await axios.get(`${BASE_API_URL}i=${id}${KEY}`);
-
-      const genresString = data.Genre;
-      const genreArray = genresString.split(", ");
-      setGenres(genreArray);
-
-      const actorsString = data.Actors;
-      const actorsArray = actorsString.split(", ");
-      setActors(actorsArray);
-
-      runtimeRef.current = fixTime(data.Runtime);
-
-      setMovie(data);
+      try {
+        const { data } = await axios.get(`${BASE_API_URL}i=${id}${KEY}`);
+        if (!active) return;
+        setMovie(data);
+        setGenres(data.Genre?.split(", ") || []);
+        setActors(data.Actors?.split(", ") || []);
+        runtimeRef.current = fixTime(data.Runtime);
+        imageLoaded(data.Poster);
+      } catch {
+        // swallow for now or set error state if needed
+      }
     }
     fetchMovieDetails();
-    console.log(movie);
+    return () => {
+      active = false;
+    };
   }, [id, imageLoaded]);
 
   return (
@@ -56,7 +56,6 @@ const MovieDetails = () => {
       <SearchBar />
       <section className=" py-8 antialiased md:py-16 bg-gray-900">
         <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
-          {imageLoaded(movie)}
           {img ? (
             <>
               <div className="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
@@ -271,13 +270,13 @@ const MovieDetails = () => {
 
                   <hr className="my-6 border-gray-200 md:my-8 dark:border-gray-800" />
 
-                  <p className="mb-6 text-gray-500 dark:text-gray-400">
-                    <div className="h-3 bg-gray-200 rounded-full dark:bg-gray-700 w-84 mb-3"></div>
-                    <div className="h-3 bg-gray-200 rounded-full dark:bg-gray-700 w-84 mb-3"></div>
-                    <div className="h-3 bg-gray-200 rounded-full dark:bg-gray-700 w-84 mb-3"></div>
-                    <div className="h-3 bg-gray-200 rounded-full dark:bg-gray-700 w-84 mb-3"></div>
-                    <div className="h-3 bg-gray-200 rounded-full dark:bg-gray-700 w-60 mb-3"></div>
-                  </p>
+                  <div className="mb-6 text-gray-500 dark:text-gray-400">
+                    <div className="mb-3 h-3 w-84 rounded-full bg-gray-200 dark:bg-gray-700"></div>
+                    <div className="mb-3 h-3 w-84 rounded-full bg-gray-200 dark:bg-gray-700"></div>
+                    <div className="mb-3 h-3 w-84 rounded-full bg-gray-200 dark:bg-gray-700"></div>
+                    <div className="mb-3 h-3 w-84 rounded-full bg-gray-200 dark:bg-gray-700"></div>
+                    <div className="mb-3 h-3 w-60 rounded-full bg-gray-200 dark:bg-gray-700"></div>
+                  </div>
 
                   <p className="h-3 bg-gray-200 rounded-full dark:bg-gray-700 w-72 mb-4"></p>
 

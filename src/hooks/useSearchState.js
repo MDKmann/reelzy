@@ -1,4 +1,8 @@
 import { createGlobalState } from "../data/createGlobalState";
-import useFetchMovies from "./useFetchMovies";
-const { searchResults } = useFetchMovies
-export const useSearchState = createGlobalState('searchResults', searchResults );
+
+// Factory wrapper so callers can still pass (key, initialData)
+// Usage: const { data, setData } = useSearchState('searchResults', [])
+export function useSearchState(key = "searchResults", initialData = []) {
+  const useStateHook = createGlobalState(key, initialData);
+  return useStateHook();
+}
