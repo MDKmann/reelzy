@@ -4,145 +4,106 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  /* color: white; */
-  font: inherit;
-  font-family: "Ubuntu", serif;
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
 }
 
-body {
-  background: #000;
+@theme inline {
+  --font-sans: Ubuntu, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
 }
 
-.movie-banner-bg {
-  background-image: url("/public/assets/images/moviePosterWallpaper.svg");
-  background-size: cover;
-  /* filter: brightness(25%); */
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
+@layer base {
+  * {
+    /* Tailwind v3 doesn't have border-border or outline-ring/50; set via CSS */
+    border-color: var(--border);
+    outline-color: var(--ring);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font: inherit;
+    font-family: "Ubuntu", serif;
+  }
 
-.shadow-inner-xl {
-  box-shadow: inset 0px 0px 70px 150px rgba(0, 0, 0, 0.7);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
+  body {
+    @apply min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900;
+    /* Use CSS variable for text color instead of Tailwind v4 token */
+    color: var(--foreground);
+  }
 
-.hero-text {
-  text-shadow:
-    #000 1px 1px 0,
-    0px 0px 10px #7a7a7a;
-}
-
-.hero-text span {
-  text-shadow: none;
-}
-
-.screen-max-width {
-  margin-inline-start: auto;
-  margin-inline-end: auto;
-  position: relative;
-  max-width: 1120px;
-}
-
-.transform-perspective {
-  transform: perspective(75em) rotateX(18deg);
-}
-
-.threeD_img {
-  --d: 7px; /* the depth */
-  --a: 15deg; /* the angle */
-
-  /* the below value is based on the depth and the angle.
-       the formula is a bit difficult to express so we update it manually
-    */
-  --x: 10px;
-
-  width: 300px; /* control the size */
-  aspect-ratio: 0.75; /* you can use 1 as ratio but I found 1.1 a little better */
-  padding-block: var(--d);
-  /* transform: perspective(444px) rotatex(calc(var(--_i,1)*var(--a))); */
-  outline: var(--d) solid #0008;
-  outline-offset: calc(-1 * var(--d));
-  --_d: calc(100% - var(--d));
-  --_l: 0px;
-  --_r: 0px;
-  --_l: var(--d);
-  --_r: var(--d);
-  --_i: -1;
-  clip-path: polygon(
-    var(--_l) calc(var(--_d) - var(--x)),
-    var(--_l) calc(var(--d) + var(--x)),
-    var(--d) var(--d),
-    var(--_d) var(--d),
-    calc(var(--_d) + var(--_r)) calc(var(--d) + var(--x)),
-    calc(var(--_d) + var(--_r)) calc(var(--_d) - var(--x)),
-    var(--_d) var(--_d),
-    var(--d) var(--_d)
-  );
-  transition:
-    transform 0.3s,
-    --_r 0.15s,
-    --_l 0.15s 0.15s;
-  transition-timing-function: linear;
-}
-.threeD_img:hover {
-  --_l: var(--d);
-  --_r: var(--d);
-  --_i: -1;
-  transition-delay: 0s, 0.15s, 0s;
-}
-
-.swiper-pagination .swiper-pagination-bullet {
-  background-color: aliceblue;
-  filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
-}
-
-/* .swiper-button-prev {
-  background-image: url(../public/assets/images/circle-chevron-left-solid.svg);
-  background-repeat: no-repeat;
-  background-size: 100% auto;
-  background-position: center;
-  border-radius: 50px;
-  color:white;
-}
-.swiper-button-next {
-  background-image: url(../public/assets/images/circle-chevron-right-solid.svg);
-  background-repeat: no-repeat;
-  background-size: 100% auto;
-  background-position: center;
-  border-radius: 50px;
-} */
-
-/* 
-
-*/
-
-.swiper-slide {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-.test-navbar {
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 20px;
-  background-color: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 4px 12px 1px rgba(255, 255, 255, 0.25);
-
-  backdrop-filter: blur(8px);
-}
-
-@layer utilities {
+  /* Added typography utilities */
   h1 {
     @apply text-3xl font-bold sm:text-4xl md:text-5xl lg:text-6xl;
   }
@@ -150,7 +111,119 @@ body {
   h3 {
     @apply text-sm font-medium sm:text-base md:text-lg lg:text-xl;
   }
+}
 
+@layer components {
+  /* Dashboard-specific glassmorphic components */
+  .dashboard-card {
+    @apply border shadow-2xl bg-slate-800/40 backdrop-blur-xl border-slate-700/50 rounded-2xl;
+  }
+
+  .dashboard-card-hover {
+    @apply transition-all duration-300 hover:bg-slate-800/60 hover:border-slate-600/50;
+  }
+
+  .gradient-text {
+    @apply text-transparent bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text;
+  }
+
+  .glass-button {
+    @apply px-6 py-3 font-medium text-white transition-all duration-200 shadow-lg bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 rounded-xl hover:shadow-xl;
+  }
+
+  /* Movie-specific components from your original CSS */
+  .movie-banner-bg {
+    background-image: url("/public/assets/images/moviePosterWallpaper.svg");
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .shadow-inner-xl {
+    box-shadow: inset 0px 0px 70px 150px rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-text {
+    text-shadow:
+      #000 1px 1px 0,
+      0px 0px 10px #7a7a7a;
+  }
+
+  .hero-text span {
+    text-shadow: none;
+  }
+
+  .test-navbar {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 12px 1px rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(8px);
+  }
+
+  /* 3D image effect from your original CSS */
+  .threeD_img {
+    --d: 7px;
+    --a: 15deg;
+    --x: 10px;
+    width: 300px;
+    aspect-ratio: 0.75;
+    padding-block: var(--d);
+    outline: var(--d) solid #0008;
+    outline-offset: calc(-1 * var(--d));
+    --_d: calc(100% - var(--d));
+    --_l: 0px;
+    --_r: 0px;
+    --_l: var(--d);
+    --_r: var(--d);
+    --_i: -1;
+    clip-path: polygon(
+      var(--_l) calc(var(--_d) - var(--x)),
+      var(--_l) calc(var(--d) + var(--x)),
+      var(--d) var(--d),
+      var(--_d) var(--d),
+      calc(var(--_d) + var(--_r)) calc(var(--d) + var(--x)),
+      calc(var(--_d) + var(--_r)) calc(var(--_d) - var(--x)),
+      var(--_d) var(--_d),
+      var(--d) var(--_d)
+    );
+    transition:
+      transform 0.3s,
+      --_r 0.15s,
+      --_l 0.15s 0.15s;
+    transition-timing-function: linear;
+  }
+
+  .threeD_img:hover {
+    --_l: var(--d);
+    --_r: var(--d);
+    --_i: -1;
+    transition-delay: 0s, 0.15s, 0s;
+  }
+
+  /* Swiper customizations */
+  .swiper-pagination .swiper-pagination-bullet {
+    background-color: aliceblue;
+    filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
+  }
+
+  .swiper-slide {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+}
+
+@layer utilities {
+  /* Custom utility classes from your original CSS */
   .flex-center {
     @apply flex items-center justify-center;
   }
@@ -158,54 +231,66 @@ body {
   .nav-height {
     @apply h-[calc(100vh-60px)];
   }
+
   .hero-height {
     @apply h-[calc(100vh-120px)];
   }
 
   .select-anim {
-    @apply bg-inherit opacity-0 focus:outline-none transition-all duration-300 ease-in-out group-focus:w-64 group-hover:w-64 group-active:w-64 group-focus:opacity-100 group-active:opacity-100 group-hover:opacity-100;
+    @apply transition-all duration-300 ease-in-out opacity-0 bg-inherit focus:outline-none group-focus:w-64 group-hover:w-64 group-active:w-64 group-focus:opacity-100 group-active:opacity-100 group-hover:opacity-100;
   }
 
   .glass-effect {
-    @apply backdrop-blur-lg bg-gray-800/50 shadow border border-gray-500;
+    @apply border border-gray-500 shadow backdrop-blur-lg bg-gray-800/50;
   }
 
   .movie-card {
     @apply max-w-[300px] max-h-[444px] aspect-[4.44/3] h-full w-full;
   }
+
   .movie-card-img {
-    @apply sm:w-[300px] sm:h-[444px];
+    @apply sm:w-[300px] sm:h-[444px] aspect-[2/3] w-full h-full object-cover;
   }
-  /* .movie-card-img {
-    @apply sm:w-[300px] sm:h-[444px] max-[400px]:min-w-[250px] max-[400px]:min-h-[355px]  ;
-  }
-  
-   */
+
   .image-lift {
-    @apply shadow-[rgba(22,31,39,0.42)_0px_60px_123px_-25px,rgba(19,26,32,0.08)_0px_35px_75px_-35px] border rounded-[10px] border-solid border-[rgb(213,220,226)_rgb(213,220,226)_rgb(184,194,204)] origin-top transform-perspective;
+    @apply shadow-[rgba(22,31,39,0.42)_0px_60px_123px_-25px,rgba(19,26,32,0.08)_0px_35px_75px_-35px] border rounded-[10px] border-solid border-[rgb(213,220,226)_rgb(213,220,226)_rgb(184,194,204)] origin-top;
+  }
+
+  .transform-perspective {
+    transform: perspective(75em) rotateX(18deg);
+  }
+
+  .screen-max-width {
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    position: relative;
+    max-width: 1120px;
   }
 
   .card-hover-shadow {
     @apply shadow-[2px_4px_12px_6px_#555555] bg-[#777777] mx-auto border border-gray-500;
   }
+
   .card-shadow-dark {
-    @apply shadow-[2px_4px_12px_6px_#000]  mx-auto;
+    @apply shadow-[2px_4px_12px_6px_#000] mx-auto;
   }
 
   .transition-group {
-    @apply transition ease-in-out duration-500;
+    @apply transition duration-500 ease-in-out;
   }
 
   .transition-secondary {
-    @apply transition ease-in duration-300 delay-300;
+    @apply transition duration-300 ease-in delay-300;
   }
 
   .mobile-grid {
-    @apply grid grid-cols-1 grid-rows-10 gap-8;
+    @apply grid grid-cols-1 gap-8 grid-rows-10;
   }
+
   .md-grid {
     @apply grid grid-cols-2 grid-rows-5 gap-8;
   }
+
   .xl-grid {
     @apply grid grid-cols-3 grid-rows-5 gap-10;
   }

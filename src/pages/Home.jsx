@@ -9,7 +9,6 @@ import { HeroParallax } from "@/components/ui/hero-parallax";
 import topMovies from "../data/topMovies.json";
 import { useMemo } from "react";
 
-
 const Home = () => {
   // Generate a randomized order each render/mount (stable per mount)
   const randomizedTopMovies = useMemo(() => {
@@ -29,7 +28,7 @@ const Home = () => {
         </div>
       </div>
       <MovieCarousel /> */}
-      <HeroParallax movies={randomizedTopMovies} />
+      <HeroParallax movies={randomizedTopMovies} offsetY={-120} />
     </>
   );
 };

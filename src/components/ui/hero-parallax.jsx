@@ -5,12 +5,9 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
 import { DarkSearchBar } from "./DarkSearchBar";
+// import { DarkSearchBar } from "./DarkSearchBar";
 
-export const HeroParallax = ({
-  movies = [],
-  offsetY = -160,
-  offsetX = -80,
-}) => {
+export const HeroParallax = ({ movies = [], offsetY = 0, offsetX = 0 }) => {
   const ROW_SIZE = 6;
   // Build up to 4 rows (24 movies max)
   const rows = React.useMemo(() => {
@@ -53,19 +50,17 @@ export const HeroParallax = ({
     useTransform(scrollYProgress, [0, 0.2], [-700, 500]),
     springConfig
   );
-  // Height scales with number of rows (approx 90vh per row)
-  const containerHeightClass =
-    rows.length === 4
-      ? "h-[480vh]"
-      : rows.length === 3
-        ? "h-[360vh]"
-        : rows.length === 2
-          ? "h-[240vh]"
-          : "h-[180vh]";
+  // Height scales with number of rows; tuned to reduce gap before footer
+  const containerHeight = React.useMemo(() => {
+    const rowsCount = Math.max(rows.length, 1);
+    const vh = rowsCount * 100 - 105; // tighter per-row height and subtract extra to avoid trailing gap
+    return `${Math.max(vh, 130)}vh`;
+  }, [rows.length]);
   return (
     <div
       ref={ref}
-      className={`relative flex ${containerHeightClass} flex-col self-auto overflow-hidden py-32 antialiased [perspective:1000px] [transform-style:preserve-3d]`}
+      style={{ height: containerHeight }}
+      className={`relative flex flex-col self-auto overflow-visible antialiased [perspective:1000px] [transform-style:preserve-3d] pt-32 pb-6`}
     >
       <Header />
       <DarkSearchBar />
@@ -89,7 +84,7 @@ export const HeroParallax = ({
             return (
               <motion.div
                 key={`row-${idx}`}
-                className="flex flex-row mb-20 space-x-20"
+                className={`flex flex-row ${idx === rows.length - 1 ? "mb-0" : "mb-20"} space-x-20`}
               >
                 {row.map((movie) => (
                   <MovieCard
@@ -109,15 +104,15 @@ export const HeroParallax = ({
 
 export const Header = () => {
   return (
-    <div className="relative flex justify-center w-full pb-32">
-      <div className="container flex justify-start max-w-screen-lg mx-6">
-        <div className="w-full">
+    <div className="relative flex justify-center w-full pb-24">
+      <div className="container flex max-w-screen-xl mx-6 lg:text-center">
+        <div className="flex flex-col items-center w-full lg:text-center">
           <h1 className="text-2xl font-bold dark:text-white md:text-7xl">
             Find your next watch <br /> REELZY
           </h1>
-          <p className="max-w-2xl mt-8 text-base dark:text-neutral-200 md:text-xl">
-            A website that helps you find movies you'll love. <br />
-            Don't doomscroll reels when we make it REELZY to find your next
+          <p className="max-w-2xl mt-8 text-base md:text-xl dark:text-neutral-200">
+            A website that helps you find movies you&apos;ll love. <br />
+            Don&apos;t doomscroll reels when we make it REELZY to find your next
             film.
           </p>
         </div>
@@ -138,7 +133,7 @@ export const MovieCard = ({ movie, translate }) => {
       className="relative group/movie h-96 w-72 shrink-0"
     >
       <Link to={`/${movie.imdbID}`}>
-        <div className="relative group rounded-2xl transition-group hover:scale-105 hover:card-hover-shadow">
+        <div className="relative group rounded-2xl transition-group hover:card-hover-shadow hover:scale-105">
           <div className="absolute inset-0 flex items-end rounded-2xl border border-[#b1b1b166] bg-gradient-to-t from-black/60 to-transparent">
             <div className="p-4 text-white translate-y-8 transition-secondary group-hover:translate-y-0">
               <h3 className="mb-2 text-xl font-bold">{movie.Title}</h3>
@@ -158,7 +153,7 @@ export const MovieCard = ({ movie, translate }) => {
             src={movie.Poster}
             loading="lazy"
             alt="movie-poster"
-            className="object-cover movie-card-img rounded-2xl"
+            className="object-cover rounded-2xl movie-card-img"
           />
         </div>
       </Link>
