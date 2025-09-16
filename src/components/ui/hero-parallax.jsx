@@ -34,33 +34,34 @@ export const HeroParallax = ({ movies = [], offsetY = 0, offsetX = 0 }) => {
     useTransform(scrollYProgress, [0, 1], [0, -1000]),
     springConfig
   );
+  const FLATTEN_PROGRESS = 0.15; // smaller = flattens sooner with less scroll distance
   const rotateX = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [15, 0]),
+    useTransform(scrollYProgress, [0, FLATTEN_PROGRESS], [15, 0]),
     springConfig
   );
   const opacity = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [0.2, 1]),
+    useTransform(scrollYProgress, [0, FLATTEN_PROGRESS], [0.2, 1]),
     springConfig
   );
   const rotateZ = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [20, 0]),
+    useTransform(scrollYProgress, [0, FLATTEN_PROGRESS], [20, 0]),
     springConfig
   );
   const translateY = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [-700, 500]),
+    useTransform(scrollYProgress, [0, FLATTEN_PROGRESS], [-700, 350]),
     springConfig
   );
-  // Height scales with number of rows; tuned to reduce gap before footer
+  // Height scales with number of rows; add a small buffer to avoid overlapping the footer
   const containerHeight = React.useMemo(() => {
     const rowsCount = Math.max(rows.length, 1);
-    const vh = rowsCount * 100 - 110; // tighter per-row height and subtract extra to avoid trailing gap
-    return `${Math.max(vh, 130)}vh`;
+    const vh = rowsCount * 100 + 10; // small buffer to ensure enough scroll space
+    return `${Math.max(vh, 140)}vh`;
   }, [rows.length]);
   return (
     <div
       ref={ref}
       style={{ height: containerHeight }}
-      className={`relative flex flex-col self-auto overflow-visible antialiased [perspective:1000px] [transform-style:preserve-3d] pt-32 pb-6`}
+      className={`relative flex flex-col self-auto overflow-hidden pt-32 pb-24 antialiased [perspective:1000px] [transform-style:preserve-3d]`}
     >
       <Header />
       <DarkSearchBar />
@@ -84,7 +85,7 @@ export const HeroParallax = ({ movies = [], offsetY = 0, offsetX = 0 }) => {
             return (
               <motion.div
                 key={`row-${idx}`}
-                className={`flex flex-row ${idx === rows.length - 1 ? "mb-0" : "mb-20"} space-x-20`}
+                className={`flex flex-row ${idx === rows.length - 1 ? "mb-0" : "mb-20"} space-x-10`}
               >
                 {row.map((movie) => (
                   <MovieCard
