@@ -53,7 +53,7 @@ export const HeroParallax = ({ movies = [], offsetY = 0, offsetX = 0 }) => {
   // Height scales with number of rows; tuned to reduce gap before footer
   const containerHeight = React.useMemo(() => {
     const rowsCount = Math.max(rows.length, 1);
-    const vh = rowsCount * 100 - 105; // tighter per-row height and subtract extra to avoid trailing gap
+    const vh = rowsCount * 100 - 110; // tighter per-row height and subtract extra to avoid trailing gap
     return `${Math.max(vh, 130)}vh`;
   }, [rows.length]);
   return (

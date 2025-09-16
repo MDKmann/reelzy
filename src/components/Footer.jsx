@@ -1,7 +1,7 @@
 
 export function Footer() {
   return (
-    <footer className="relative w-full mx-auto mt-20 text-center text-white bg-black xl:mt-32">
+    <footer className="relative w-full mx-auto mt-20 text-center text-white xl:mt-32">
       <div className="px-6 py-8">
         <h2 className="text-4xl font-bold leading-snug xl:text-4xl">
           Love what you see?

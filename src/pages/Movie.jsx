@@ -54,7 +54,7 @@ const MovieDetails = () => {
   return (
     <>
       <DarkSearchBar />
-      <section className="min-h-screen py-8 antialiased bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 md:py-16">
+      <section className="min-h-screen py-8 antialiased md:py-16">
         <div className="max-w-screen-xl px-4 mx-auto 2xl:px-0">
           {img ? (
             <>
