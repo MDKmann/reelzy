@@ -5,23 +5,30 @@
  * - responsible for container styles
  */
 
-import Hero from "../components/Hero";
-import MovieCarousel from "../components/MovieCarousel";
-import { SearchBar } from "../components/SearchBar";
-
+import { HeroParallax } from "@/components/HeroParallax.jsx";
+import topMovies from "../data/topMovies.json";
+import { useMemo } from "react";
 
 const Home = () => {
+  // Generate a randomized order each render/mount (stable per mount)
+  const randomizedTopMovies = useMemo(() => {
+    return [...topMovies]
+      .map((m) => ({ m, r: Math.random() }))
+      .sort((a, b) => a.r - b.r)
+      .map(({ m }) => m);
+  }, []);
   return (
     <>
-      <div className="h-screen flex-col items-center justify-center">
+      {/* <div className="flex-col items-center justify-center h-screen">
         <div className="movie-banner-bg -z-50 "></div>
         <div className="shadow-inner-xl -z-40"></div>
-        <div className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 w-full mx-auto">
+        <div className="absolute w-full mx-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
           <Hero />
           <SearchBar />
         </div>
       </div>
-      <MovieCarousel />
+      <MovieCarousel /> */}
+      <HeroParallax movies={randomizedTopMovies} offsetY={-120} />
     </>
   );
 };
