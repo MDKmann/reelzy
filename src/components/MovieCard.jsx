@@ -3,8 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { fixTime } from "../utils/fixTime";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
-import { Badge } from "@/components/ui/Badge";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/Card.jsx";
+import { Badge } from "@/components/ui/Badge.jsx";
 
 const MovieCard = ({ movie }) => {
   const runtimeRef = useRef("");
@@ -63,7 +68,7 @@ const MovieCard = ({ movie }) => {
                 </div>
               </div>
 
-              <CardContent className="place-self-end translate-y-8 p-4 text-xs text-muted-foreground transition-secondary group-hover:translate-y-0">
+              <CardContent className="place-self-end translate-y-8 p-4 text-xs text-muted-foreground group-hover:translate-y-0 transition-secondary">
                 <CardHeader className="px-2 pb-0">
                   <CardTitle className="line-clamp-2 text-base leading-snug group-hover:text-primary">
                     {movie.Title}
@@ -95,9 +100,9 @@ const MovieCard = ({ movie }) => {
         </>
       ) : (
         <>
-          <div className="relative transition-group group rounded-2xl hover:scale-105">
+          <div className="relative group rounded-2xl transition-group hover:scale-105">
             <div className="absolute inset-0 flex items-end rounded-2xl">
-              <div className="p-4 text-white transition-secondary sm:translate-y-8 group-hover:translate-y-0">
+              <div className="p-4 text-white sm:translate-y-8 group-hover:translate-y-0 transition-secondary">
                 <h3 className="mb-4 h-2.5 w-48 rounded-full bg-gray-200 dark:bg-gray-700"></h3>
                 <div className="mt-4 transition-opacity delay-500 group-hover:opacity-100 sm:space-x-4 sm:opacity-0">
                   <div className="flex justify-start">

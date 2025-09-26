@@ -1,12 +1,12 @@
 import { FilterIcon } from "lucide-react";
 
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button.jsx";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/DropdownMenu";
+} from "@/components/ui/DropdownMenu.jsx";
 
 export default function SortDropdown({ filterOptions = [], onSelect }) {
   return (

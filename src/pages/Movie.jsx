@@ -9,7 +9,7 @@ import axios from "axios";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fixTime } from "../utils/fixTime";
-import { DarkSearchBar } from "@/components/DarkSearchBar";
+import { DarkSearchBar } from "@/components/DarkSearchBar.jsx";
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState({});
@@ -119,11 +119,11 @@ const MovieDetails = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                           title=""
-                          className="hover:text-primary-700 flex items-center justify-center rounded-lg border px-5 py-2.5 text-sm font-medium focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 border-gray-600 bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-gray-700 my-2 sm:my-0 max-w-[350px]"
+                          className="flex items-center justify-center rounded-lg border border-gray-600 bg-gray-800 px-5 py-2.5 text-sm font-medium text-gray-400 hover:bg-gray-700 hover:text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-700 my-2 sm:my-0 max-w-[350px]"
                           role="button"
                         >
                           <svg
-                            className="w-5 h-5 -ms-2 me-2"
+                            className="size-5 -ms-2 me-2"
                             aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
@@ -155,11 +155,11 @@ const MovieDetails = () => {
                         key={genre}
                         href="#"
                         title=""
-                        className="hover:text-primary-700 flex items-center justify-center rounded-lg border px-5 py-2.5 text-sm font-medium focus:z-10 focus:outline-none focus:ring-4 border-gray-600 bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-gray-700 my-2 sm:my-0 max-w-[350px]"
+                        className="flex items-center justify-center rounded-lg border border-gray-600 bg-gray-800 px-5 py-2.5 text-sm font-medium text-gray-400 hover:bg-gray-700 hover:text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-700 my-2 sm:my-0 max-w-[350px]"
                         role="button"
                       >
                         <svg
-                          className="w-5 h-5 -ms-2 me-2"
+                          className="size-5 -ms-2 me-2"
                           aria-hidden="true"
                           xmlns="http://www.w3.org/2000/svg"
                           width="24"
@@ -181,10 +181,10 @@ const MovieDetails = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       role="button"
-                      className="hover:text-primary-700 flex items-center justify-center rounded-lg border px-8 py-3 text-lg font-medium focus:z-10 focus:outline-none focus:ring-4 border-gray-600 bg-red-700 text-gray-200 hover:bg-red-600 hover:text-white focus:ring-gray-700 my-2 sm:my-0 max-w-[350px]"
+                      className="flex items-center justify-center rounded-lg border border-gray-600 bg-red-700 px-8 py-3 text-lg font-medium text-gray-200 hover:bg-red-600 hover:text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-700 my-2 sm:my-0 max-w-[350px]"
                     >
                       <svg
-                        className="w-5 h-5 -ms-2 me-2"
+                        className="size-5 -ms-2 me-2"
                         aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -207,10 +207,10 @@ const MovieDetails = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   role="button"
-                  className="hover:text-primary-700 flex items-center justify-center rounded-lg border px-8 py-3 text-lg font-medium focus:z-10 focus:outline-none focus:ring-4 border-gray-600 bg-red-700 text-gray-200 hover:bg-red-600 hover:text-white focus:ring-gray-700 my-2 sm:my-0 max-w-[350px]"
+                  className="flex items-center justify-center rounded-lg border border-gray-600 bg-red-700 px-8 py-3 text-lg font-medium text-gray-200 hover:bg-red-600 hover:text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-700 my-2 sm:my-0 max-w-[350px]"
                 >
                   <svg
-                    className="w-5 h-5 -ms-2 me-2"
+                    className="size-5 -ms-2 me-2"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"

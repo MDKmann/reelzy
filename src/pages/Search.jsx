@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useSearchState } from "../hooks/useSearchState";
 import { MovieSortFilters, sortMoviesArray } from "@/utils/movieSort";
 import { useLocation } from "react-router-dom";
-import { DarkSearchBar } from "@/components/DarkSearchBar";
-import { FeaturesCardGrid } from "@/components/FeaturesCardGrid";
+import { DarkSearchBar } from "@/components/DarkSearchBar.jsx";
+import { FeaturesCardGrid } from "@/components/FeaturesCardGrid.jsx";
 
 const Search = () => {
   const { data } = useSearchState();
