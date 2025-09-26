@@ -5,7 +5,7 @@
  * - responsible for container styles
  */
 
-import { HeroParallax } from "@/components/ui/hero-parallax";
+import { HeroParallax } from "@/components/HeroParallax";
 import topMovies from "../data/topMovies.json";
 import { useMemo } from "react";
 

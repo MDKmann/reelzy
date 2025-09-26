@@ -7,28 +7,36 @@ export const MovieSortFilters = {
   RATING_LOW_TO_HIGH: "RATING_LOW_TO_HIGH",
 };
 
+/**
+ * Sort an array of OMDB movie objects by the specified filter.
+ * - Falls back gracefully when Released/Year or imdbRating are missing/"N/A".
+ * - Uses slice().sort for wide compatibility (avoids Array.prototype.toSorted).
+ */
 export function sortMoviesArray(
   movies = [],
   filter = MovieSortFilters.DEFAULT
 ) {
   if (!Array.isArray(movies) || movies.length === 0) return movies;
+  const toTimestamp = (m) => {
+    const r =
+      m?.Released && m.Released !== "N/A" ? Date.parse(m.Released) : NaN;
+    if (!Number.isNaN(r)) return r;
+    const y = parseInt(m?.Year, 10);
+    return Number.isFinite(y) ? Date.parse(`${y}-01-01`) : 0;
+  };
+  const toRating = (m) => {
+    const v = Number(m?.imdbRating);
+    return Number.isFinite(v) ? v : 0;
+  };
   switch (filter) {
     case MovieSortFilters.YEAR_HIGH_TO_LOW:
-      return movies.toSorted(
-        (b, a) => Date.parse(a.Released) - Date.parse(b.Released)
-      );
+      return movies.slice().sort((a, b) => toTimestamp(b) - toTimestamp(a));
     case MovieSortFilters.YEAR_LOW_TO_HIGH:
-      return movies.toSorted(
-        (a, b) => Date.parse(a.Released) - Date.parse(b.Released)
-      );
+      return movies.slice().sort((a, b) => toTimestamp(a) - toTimestamp(b));
     case MovieSortFilters.RATING_HIGH_TO_LOW:
-      return movies.toSorted(
-        (b, a) => Number(a.imdbRating) - Number(b.imdbRating)
-      );
+      return movies.slice().sort((a, b) => toRating(b) - toRating(a));
     case MovieSortFilters.RATING_LOW_TO_HIGH:
-      return movies.toSorted(
-        (b, a) => Number(a.imdbRating) - Number(b.imdbRating)
-      );
+      return movies.slice().sort((a, b) => toRating(a) - toRating(b));
     default:
       return movies;
   }

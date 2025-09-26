@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 export function createGlobalState(queryKey, initialData) {
@@ -15,14 +16,17 @@ export function createGlobalState(queryKey, initialData) {
       refetchIntervalInBackground: false,
     });
 
-    function setData(updated) {
-      queryClient.setQueryData([queryKey], updated ?? []);
-    }
+    const setData = useCallback(
+      (updated) => {
+        queryClient.setQueryData([queryKey], updated ?? []);
+      },
+      [queryClient]
+    );
 
-    function resetData() {
+    const resetData = useCallback(() => {
       queryClient.invalidateQueries({ queryKey: [queryKey] });
       queryClient.refetchQueries({ queryKey: [queryKey] });
-    }
+    }, [queryClient]);
 
     return { data, setData, resetData };
   };

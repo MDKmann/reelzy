@@ -1,22 +1,28 @@
 import { useEffect, useState } from "react";
-import MovieGrid from "../components/MovieGrid";
-import { SearchBar } from "../components/SearchBar";
 import { useSearchState } from "../hooks/useSearchState";
+import { MovieSortFilters, sortMoviesArray } from "@/utils/movieSort";
 import { useLocation } from "react-router-dom";
-import { DarkSearchBar } from "@/components/ui/DarkSearchBar";
+import { DarkSearchBar } from "@/components/DarkSearchBar";
+import { FeaturesCardGrid } from "@/components/FeaturesCardGrid";
 
 const Search = () => {
   const { data } = useSearchState();
+  const { data: currentSort = MovieSortFilters.DEFAULT } = useSearchState(
+    "sortFilter",
+    MovieSortFilters.DEFAULT
+  );
   const [results, setResults] = useState([]);
   const { state } = useLocation(); // <-- unpack route state
 
-useEffect(() => {setResults(data)}, [data,state])
+  useEffect(() => {
+    setResults(sortMoviesArray(data, currentSort));
+  }, [data, currentSort, state]);
 
   return (
     <>
-      <div className="flex flex-col items-center h-3/4">
+      <div className="flex h-3/4 flex-col items-center">
         <DarkSearchBar />
-        <MovieGrid data={results}/>
+        <FeaturesCardGrid data={results} />
       </div>
     </>
   );

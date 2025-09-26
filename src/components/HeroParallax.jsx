@@ -107,7 +107,7 @@ export const Header = () => {
   return (
     <div className="relative flex justify-center w-full pb-24">
       <div className="container flex max-w-screen-xl mx-6 lg:text-center">
-        <div className="flex flex-col items-center w-full lg:text-center">
+        <div className="flex flex-col w-full sm:items-center lg:text-center">
           <h1 className="text-2xl font-bold dark:text-white md:text-7xl">
             Find your next watch <br /> REELZY
           </h1>

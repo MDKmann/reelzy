@@ -1,11 +1,8 @@
-
-
-
-    const Hero = () => {
+const Hero = () => {
         return (
           <>
-            <div className="flex justify-center text-center text-white hero-text mb-24 px-4 sm:px-6 lg:px-8">
-              <div className="flex flex-col items-center mx-6 max-w-screen-lg">
+            <div className="flex justify-center px-4 mb-24 text-center text-white hero-text sm:px-6 lg:px-8">
+              <div className="flex flex-col items-center max-w-screen-lg mx-6">
                 <h1>
                   Your site to find your next favorite show and we make it{" "}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-sky-400">

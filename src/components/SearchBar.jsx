@@ -2,7 +2,7 @@ import MagnifySVG from "./MagnifySVG";
 // import SlidersSVG from "./SlidersSVG";
 import useFetchMovies from "../hooks/useFetchMovies";
 import { useSearchState } from "../hooks/useSearchState";
-// import { handleSortMovies } from "../utils/sortMovies";
+// import { handleSortMovies } from "../utils/sortMovies"
 import { getItem } from "../utils/localStorage";
 import { useEffect } from "react";
 import SlidersSVG from "./SlidersSVG";
@@ -64,12 +64,10 @@ export function SearchBar() {
   }, [data, setData, resetData]);
 
   return (
-    <div className="my-4 mx-6 flex justify-center ">
+    <div className="flex justify-center mx-6 my-4 ">
       <div className="flex w-full max-w-[600px] rounded-full bg-[#0d1829] px-2">
         <button className="flex cursor-pointer self-center bg-[#0d1829] p-1"></button>
-        <div
-        id="sort"
-        className="group relative">
+        <div id="sort" className="relative group">
           <label alt="filter movies">
             <div className="absolute mx-4 my-2 group-focus:opacity-0 group-hover:opacity-0 group-active:opacity-0 group:transition-all">
               <SlidersSVG />
@@ -78,7 +76,7 @@ export function SearchBar() {
               id="filter"
               defaultValue="DEFAULT"
               onChange={(event) => sortMovies(event.target.value)}
-              className="text-gray-400 w-8 h-10 px-5 pr-10 rounded-full text-sm select-anim"
+              className="w-8 h-10 px-5 pr-10 text-sm text-gray-400 rounded-full select-anim"
             >
               <option value="DEFAULT" disabled>
                 Sort
@@ -106,7 +104,7 @@ export function SearchBar() {
             onChange={(event) => setSearchValue(event.target.value)}
             placeholder="Search by title . . ."
             required
-            className="flex grow w-full bg-[#0d1829] bg-transparent pl-2 text-[#cccccc] focus:outline-none z-10 outline-0"
+            className="z-10 flex w-full grow bg-[#0d1829] pl-2 text-[#cccccc] outline-0 focus:outline-none"
           />
           <button
             type="submit"
@@ -117,6 +115,5 @@ export function SearchBar() {
         </form>
       </div>
     </div>
-
   );
 }
